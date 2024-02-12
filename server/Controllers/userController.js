@@ -9,3 +9,8 @@ exports.user = asyncHandler((req, res, next) => {
         username: 'abhishek@gmail.com'
     });
 });
+
+exports.signup = asyncHandler((req, res, next) => {
+    console.log('Req--------------->', req.body);
+    res.json(req.body);
+});

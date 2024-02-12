@@ -2,23 +2,31 @@ const express = require('express');
 const mongoose = require('mongoose');
 const indexRouter = require('./Routes/indexRouter');
 const userRouter = require('./Routes/userRouter');
+const cors = require('cors');
+const bodyParser = require('body-parser')
 
 const app = express();
 
-// mongoose.connect('DB URL', {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-// });
+mongoose.connect('mongodb://localhost:27017', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
 
-// mongoose.connection.on('error', (err) => {
-//     console.log('MongoDB Connection Error:', err);
-//     process.exit(1);
-// });
+mongoose.connection.on('error', (err) => {
+    console.log('MongoDB Connection Error:', err);
+    process.exit(1);
+});
 
-// mongoose.connection.once('open', () => {
-//     console.log('Connected to MongoDB');
-// });
+mongoose.connection.once('open', () => {
+    console.log('Connected to MongoDB');
+});
 
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
+
+app.use(cors())
 app.use('/', indexRouter);
 app.use('/users', userRouter);
 
