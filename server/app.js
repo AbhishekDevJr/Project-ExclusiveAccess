@@ -7,19 +7,19 @@ const bodyParser = require('body-parser')
 
 const app = express();
 
-mongoose.connect('mongodb://localhost:27017', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
+// mongoose.connect('mongodb://localhost:27017', {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+// });
 
-mongoose.connection.on('error', (err) => {
-    console.log('MongoDB Connection Error:', err);
-    process.exit(1);
-});
+// mongoose.connection.on('error', (err) => {
+//     console.log('MongoDB Connection Error:', err);
+//     process.exit(1);
+// });
 
-mongoose.connection.once('open', () => {
-    console.log('Connected to MongoDB');
-});
+// mongoose.connection.once('open', () => {
+//     console.log('Connected to MongoDB');
+// });
 
 app.use(bodyParser.urlencoded({ extended: false }))
 

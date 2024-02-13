@@ -1,6 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css'
 import SignUp from './component/SignUp/SignUp'
+import ExclusiveAccess from './component/ExclusiveAccess/ExclusiveAccess';
+import SignIn from './component/SignIn/SignIn';
 
 function App() {
 
@@ -13,6 +15,8 @@ function App() {
           </div>}
         />
         <Route path='/signup' element={<SignUp />} />
+        <Route path='/exclusive' element={<ExclusiveAccess />} />
+        <Route path='/signin' element={<SignIn />} />
       </Routes>
     </BrowserRouter>
   )
