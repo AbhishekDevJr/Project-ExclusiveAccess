@@ -5,35 +5,62 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const SignUp = () => {
 
+    const [form] = Form.useForm();
+
     const onFinish = async (values) => {
         console.log('Success:', values.password === values.conPassword, values.password, values.conPassword);
         if (values.password === values.conPassword) {
-            toast.success('Form Submitted Successfully!', {
-                position: "top-center",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-            });
-
+            console.log('ResetB--------->');
+            form.resetFields();
             //Call POST API Here
-            await fetch('http://localhost:5000/users/signup', {
+            const userAdd = await fetch('http://localhost:5000/users/signup', {
                 method: 'POST',
                 body: JSON.stringify(values),
                 headers: {
                     'Content-type': 'application/json; charset=UTF-8',
                 },
-            })
-                .then((response) => response.json())
-                .then((data) => {
-                    console.log(data);
-                })
-                .catch((err) => {
-                    console.log(err.message);
+            });
+
+            const userAddRes = await userAdd.json();
+
+            if (userAddRes.resCode === 'UserCreated') {
+                toast.success(`${userAddRes.message}`, {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
                 });
+            }
+            else if (userAddRes.resCode === 'UserExists') {
+                toast.success(`${userAddRes.message}`, {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+            }
+            else {
+                toast.warn(`Unhandled Server Error.`, {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+            }
+
+            console.log('ResetA--------->');
         }
         else {
             toast.error('Password & Confirm Password should match', {
@@ -47,6 +74,8 @@ const SignUp = () => {
                 theme: "dark",
             });
         }
+
+        form.resetFields();
     };
 
     const onFinishFailed = (errorInfo) => {
@@ -73,6 +102,7 @@ const SignUp = () => {
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
                 autoComplete="off"
+                form={form}
             >
                 <Form.Item
                     label="First Name"
@@ -84,6 +114,7 @@ const SignUp = () => {
                             pattern: /^[A-Za-z]+$/
                         },
                     ]}
+                    key='firstname'
                 >
                     <Input />
                 </Form.Item>
@@ -98,6 +129,7 @@ const SignUp = () => {
                             pattern: /^[A-Za-z]+$/
                         },
                     ]}
+                    key='lastName'
                 >
                     <Input onCha />
                 </Form.Item>
@@ -112,6 +144,7 @@ const SignUp = () => {
                             pattern: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
                         },
                     ]}
+                    key='email'
                 >
                     <Input />
                 </Form.Item>
@@ -126,6 +159,7 @@ const SignUp = () => {
                             // pattern:
                         },
                     ]}
+                    key='password'
                 >
                     <Input />
                 </Form.Item>
@@ -139,6 +173,7 @@ const SignUp = () => {
                             message: 'Please input your Password!',
                         },
                     ]}
+                    key='cPassword'
                 >
                     <Input />
                 </Form.Item>
@@ -148,6 +183,7 @@ const SignUp = () => {
                         offset: 8,
                         span: 16,
                     }}
+                    key='submit'
                 >
                     <Button type="primary" htmlType="submit">
                         Submit

@@ -6,6 +6,8 @@ import { ToastContainer, toast } from 'react-toastify';
 
 function SignIn() {
 
+    const [form] = Form.useForm();
+
     const signInApi = async (reqObj) => {
         const userSignIn = await fetch('http://localhost:5000/users/signin', {
             method: 'POST',
@@ -30,7 +32,7 @@ function SignIn() {
             });
         }
         else if (userRes.resCode === 'Authentication Failed') {
-            toast.success(`${userRes.message}`, {
+            toast.error(`${userRes.message}`, {
                 position: "top-center",
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -72,6 +74,7 @@ function SignIn() {
     const onFinish = (data) => {
         console.log('data----------->', data);
         signInApi(data);
+        form.resetFields();
     }
 
     const onFinishFailed = (data) => {
