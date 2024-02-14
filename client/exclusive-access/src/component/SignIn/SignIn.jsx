@@ -9,66 +9,71 @@ function SignIn() {
     const [form] = Form.useForm();
 
     const signInApi = async (reqObj) => {
-        const userSignIn = await fetch('http://localhost:5000/users/signin', {
-            method: 'POST',
-            body: JSON.stringify(reqObj),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            },
-        });
+        try {
+            const userSignIn = await fetch('http://localhost:5000/users/signin', {
+                method: 'POST',
+                body: JSON.stringify(reqObj),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                },
+            });
 
-        const userRes = await userSignIn.json();
+            const userRes = await userSignIn.json();
 
-        if (userRes.resCode === 'Authenticated') {
-            toast.success(`${userRes.message}`, {
-                position: "top-center",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-            });
-        }
-        else if (userRes.resCode === 'Authentication Failed') {
-            toast.error(`${userRes.message}`, {
-                position: "top-center",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-            });
-        }
-        else if (userRes.resCode === 'UserNotFound') {
-            toast.success(`${userRes.message}`, {
-                position: "top-center",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-            });
-        }
-        else {
-            toast.error(`Unhandled Server Error`, {
-                position: "top-center",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-            });
-        }
+            if (userRes.resCode === 'Authenticated') {
+                toast.success(`${userRes.message}`, {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+            }
+            else if (userRes.resCode === 'Authentication Failed') {
+                toast.error(`${userRes.message}`, {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+            }
+            else if (userRes.resCode === 'UserNotFound') {
+                toast.success(`${userRes.message}`, {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+            }
+            else {
+                toast.error(`Unhandled Server Error`, {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+            }
 
-        console.log('userSignIn-------->', userRes);
+            console.log('userSignIn-------->', userRes);
+        }
+        catch (e) {
+            console.log('Error---->', e);
+        }
     }
 
     const onFinish = (data) => {

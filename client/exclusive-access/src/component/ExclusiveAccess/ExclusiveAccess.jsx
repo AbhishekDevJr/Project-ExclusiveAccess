@@ -9,54 +9,59 @@ function ExclusiveAccess() {
     const [form] = Form.useForm();
 
     const exclusiveAPI = async (reqObj) => {
-        const exclusiveRes = await fetch('http://localhost:5000/users/exclusive', {
-            method: 'POST',
-            body: JSON.stringify(reqObj),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            },
-        });
-
-        const resFinal = await exclusiveRes.json();
-
-        console.log('Res------------->', resFinal);
-
-        if (resFinal.resCode === 'OK') {
-
-            toast.success(`${resFinal.message}`, {
-                position: "top-center",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
+        try {
+            const exclusiveRes = await fetch('http://localhost:5000/users/exclusive', {
+                method: 'POST',
+                body: JSON.stringify(reqObj),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                },
             });
+
+            const resFinal = await exclusiveRes.json();
+
+            console.log('Res------------->', resFinal);
+
+            if (resFinal.resCode === 'OK') {
+
+                toast.success(`${resFinal.message}`, {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+            }
+            else if (resFinal.resCode === 'hasAccess') {
+                toast.success(`${resFinal.message}`, {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+            }
+            else {
+                toast.warn(`Unhandled Server Error.`, {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+            }
         }
-        else if (resFinal.resCode === 'hasAccess') {
-            toast.success(`${resFinal.message}`, {
-                position: "top-center",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-            });
-        }
-        else {
-            toast.warn(`Unhandled Server Error.`, {
-                position: "top-center",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-            });
+        catch (e) {
+            console.log('Error------->', e);
         }
     }
 
