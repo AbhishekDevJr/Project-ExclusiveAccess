@@ -3,6 +3,7 @@ import { Button, Form, Input } from 'antd';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom';
+import './signup.scss';
 
 const SignUp = () => {
 
@@ -84,7 +85,7 @@ const SignUp = () => {
     };
 
     return (
-        <div className='container-singup' style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div className='container-singup'>
             <header className='strip-header'>
                 <h2>Members <span>only Club</span></h2>
                 <div className='nav-links'>
@@ -119,91 +120,102 @@ const SignUp = () => {
                     autoComplete="off"
                     form={form}
                 >
-                    <Form.Item
-                        label="First Name"
-                        name="firstName"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input a valid First Name!',
-                                pattern: /^[A-Za-z]+$/
-                            },
-                        ]}
-                        key='firstname'
-                    >
-                        <Input />
-                    </Form.Item>
 
-                    <Form.Item
-                        label="Last Name"
-                        name="lastName"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input a valid Last Name!',
-                                pattern: /^[A-Za-z]+$/
-                            },
-                        ]}
-                        key='lastName'
-                    >
-                        <Input onCha />
-                    </Form.Item>
+                    <h1>Sign up</h1>
 
-                    <Form.Item
-                        label="Emai"
-                        name="email"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input a valid Email Id!',
-                                pattern: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
-                            },
-                        ]}
-                        key='email'
-                    >
-                        <Input />
-                    </Form.Item>
+                    <div className='group-input-names'>
+                        <Form.Item
+                            label="First Name"
+                            name="firstName"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input a valid First Name!',
+                                    pattern: /^[A-Za-z]+$/
+                                },
+                            ]}
+                            key='firstname'
+                        >
+                            <Input />
+                        </Form.Item>
 
-                    <Form.Item
-                        label="Password"
-                        name="password"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input your Password!',
-                                // pattern:
-                            },
-                        ]}
-                        key='password'
-                    >
-                        <Input />
-                    </Form.Item>
+                        <Form.Item
+                            label="Last Name"
+                            name="lastName"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input a valid Last Name!',
+                                    pattern: /^[A-Za-z]+$/
+                                },
+                            ]}
+                            key='lastName'
+                        >
+                            <Input onCha />
+                        </Form.Item>
+                    </div>
 
-                    <Form.Item
-                        label="Confirm Pass"
-                        name="conPassword"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input your Password!',
-                            },
-                        ]}
-                        key='cPassword'
-                    >
-                        <Input />
-                    </Form.Item>
+                    <div className='group-input-email'>
+                        <Form.Item
+                            label="Emai"
+                            name="email"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input a valid Email Id!',
+                                    pattern: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
+                                },
+                            ]}
+                            key='email'
+                        >
+                            <Input />
+                        </Form.Item>
+                    </div>
 
-                    <Form.Item
-                        wrapperCol={{
-                            offset: 8,
-                            span: 16,
-                        }}
-                        key='submit'
-                    >
-                        <Button type="primary" htmlType="submit">
-                            Submit
-                        </Button>
-                    </Form.Item>
+                    <div className='group-input-password'>
+                        <Form.Item
+                            label="Password"
+                            name="password"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input your Password!',
+                                    // pattern:
+                                },
+                            ]}
+                            key='password'
+                        >
+                            <Input />
+                        </Form.Item>
+
+                        <Form.Item
+                            label="Confirm Pass"
+                            name="conPassword"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input your Password!',
+                                },
+                            ]}
+                            key='cPassword'
+                        >
+                            <Input />
+                        </Form.Item>
+                    </div>
+
+                    <div className='group-input-btn'>
+                        <Form.Item
+                            wrapperCol={{
+                                offset: 8,
+                                span: 16,
+                            }}
+                            key='submit'
+                        >
+                            <Button type="primary" htmlType="submit">
+                                Submit
+                            </Button>
+                        </Form.Item>
+                    </div>
 
                     <ToastContainer
                         position="top-center"
@@ -216,7 +228,7 @@ const SignUp = () => {
                         draggable
                         // pauseOnHover
                         theme="dark"
-                        // transition: Bounce
+                    // transition: Bounce
                     />
                 </Form>
             </div>

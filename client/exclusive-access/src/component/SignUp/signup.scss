@@ -1,0 +1,40 @@
+.container-singup {
+  background-color: #1d232a;
+  padding: 50px;
+
+  .strip-header {
+    // outline: 1px solid cyan;
+    display: flex;
+    justify-content: space-between;
+
+    h2 {
+      margin: 0;
+      color: #6419e6;
+      font-weight: 600;
+
+      span {
+        color: #a6adba;
+      }
+    }
+
+    .nav-links {
+      //   outline: 1px solid violet;
+      display: flex;
+      align-items: center;
+      gap: 50px;
+      font-weight: 600;
+
+      a {
+        text-decoration: none;
+        color: #a6adba;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+    }
+  }
+
+  .container-signup-form {
+    outline: 1px solid cyan;
+  }
+}
