@@ -91,18 +91,17 @@ function ExclusiveAccess() {
 
     return (
         <div className='container-exclusiveAccess'>
-            <h1>Get Exclusive Access</h1>
             <Form
                 name="basic"
-                labelCol={{
-                    span: 12,
-                }}
-                wrapperCol={{
-                    span: 16,
-                }}
-                style={{
-                    maxWidth: 600,
-                }}
+                // labelCol={{
+                //     span: 12,
+                // }}
+                // wrapperCol={{
+                //     span: 16,
+                // }}
+                // style={{
+                //     maxWidth: 600,
+                // }}
                 initialValues={{
                     remember: true,
                 }}
@@ -112,44 +111,51 @@ function ExclusiveAccess() {
 
                 form={form}
             >
-                <Form.Item
-                    label="Username"
-                    name="username"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Please input a valid Username!',
-                            pattern: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
 
-                <Form.Item
-                    label="Exclusive Passcode"
-                    name="exclusivePasscode"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Please input a valid Passcode!',
-                            pattern: /^[A-Za-z]+$/
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
+                <h1>Get Exclusive Access</h1>
 
-                <Form.Item
-                    wrapperCol={{
-                        offset: 8,
-                        span: 16,
-                    }}
-                >
-                    <Button type="primary" htmlType="submit">
-                        Submit
-                    </Button>
-                </Form.Item>
+                <div className='group-input-exclusive'>
+                    <Form.Item
+                        label="Username"
+                        name="username"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input a valid Username!',
+                                pattern: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
+                            },
+                        ]}
+                    >
+                        <Input />
+                    </Form.Item>
+
+                    <Form.Item
+                        label="Exclusive Passcode"
+                        name="exclusivePasscode"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input a valid Passcode!',
+                                pattern: /^[A-Za-z]+$/
+                            },
+                        ]}
+                    >
+                        <Input />
+                    </Form.Item>
+                </div>
+
+                <div className='group-btn'>
+                    <Form.Item
+                        wrapperCol={{
+                            offset: 8,
+                            span: 16,
+                        }}
+                    >
+                        <Button type="primary" htmlType="submit">
+                            Submit
+                        </Button>
+                    </Form.Item>
+                </div>
             </Form>
 
             <ToastContainer

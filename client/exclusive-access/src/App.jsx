@@ -3,11 +3,13 @@ import './App.css'
 import SignUp from './component/SignUp/SignUp'
 import ExclusiveAccess from './component/ExclusiveAccess/ExclusiveAccess';
 import SignIn from './component/SignIn/SignIn';
+import Header from './component/Header/Header';
 
 function App() {
 
   return (
     <BrowserRouter>
+      <Header />
       <Routes>
         <Route exact path='/' element={
           <div className='container-app'>
