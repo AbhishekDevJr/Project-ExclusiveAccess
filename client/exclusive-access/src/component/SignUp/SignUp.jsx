@@ -88,15 +88,6 @@ const SignUp = () => {
             <div className='container-signup-form'>
                 <Form
                     name="basic"
-                    // labelCol={{
-                    //     span: 9,
-                    // }}
-                    // wrapperCol={{
-                    //     span: 16,
-                    // }}
-                    // style={{
-                    //     maxWidth: 600,
-                    // }}
                     initialValues={{
                         remember: true,
                     }}
@@ -170,7 +161,7 @@ const SignUp = () => {
                             ]}
                             key='password'
                         >
-                            <Input />
+                            <Input.Password classNames='input-passwords' />
                         </Form.Item>
 
                         <Form.Item
@@ -184,7 +175,7 @@ const SignUp = () => {
                             ]}
                             key='cPassword'
                         >
-                            <Input />
+                            <Input.Password classNames='input-passwords' />
                         </Form.Item>
                     </div>
 

@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const indexRouter = require('./Routes/indexRouter');
 const userRouter = require('./Routes/userRouter');
 const cors = require('cors');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const postRouter = require('./Routes/postRouter');
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.use(bodyParser.json())
 app.use(cors())
 app.use('/', indexRouter);
 app.use('/users', userRouter);
+app.use('/posts', postRouter);
 
 app.listen(5000, () => console.log('Server Runnig on PORT : 5000'));
 

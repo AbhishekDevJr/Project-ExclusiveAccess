@@ -1,75 +1,92 @@
 .container-signin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
+
+  h1 {
+    color: #ffffff;
+    font-family: "Open Sans", sans-serif;
+    font-size: 40px;
+  }
+
+  #basic_username {
+    background-color: transparent;
+    min-width: 440px;
+  }
+
+  #basic_password {
+    background-color: transparent;
+    outline: none;
+    border: none;
+  }
+
+  .ant-input-password {
+    background-color: transparent;
+    border-radius: 10px;
+    border: 1px solid #383f47;
+  }
+
+  .group-signin-inputs {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 50px;
+    gap: 60px;
 
-    h1 {
-        color: #FFFFFF;
-        font-family: "Open Sans", sans-serif;
-        font-size: 40px;
+    .ant-input-affix-wrapper {
+      background-color: transparent;
+      max-height: 42px;
     }
 
-    #basic_username{
-        background-color: transparent;
+    .ant-input-affix-wrapper:hover {
+      background-color: transparent;
     }
 
-    #basic_password{
-        background-color: transparent;
+    .ant-row {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
     }
 
-    .group-signin-inputs {
-
-        display: flex;
-        flex-direction: column;
-        gap: 60px;
-
-        .ant-row {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        input {
-            min-width: 400px;
-            background-color: transparent;
-            color: #A6ADBA;
-            font-family: "Open Sans", sans-serif;
-            outline: 1px solid #383F47;
-            border: none;
-            padding: 10px;
-        }
-
-        label {
-            color: #A6ADBA;
-            font-family: "Open Sans", sans-serif;
-        }
+    input {
+      min-width: 400px;
+      background-color: transparent;
+      color: #a6adba;
+      font-family: "Open Sans", sans-serif;
+      outline: 1px solid #383f47;
+      border: none;
+      padding: 10px;
     }
 
-    .group-btn {
-        // outline: 1px solid chartreuse;
-        margin-top: 60px;
-        display: flex;
-        justify-content: center;
+    label {
+      color: #a6adba;
+      font-family: "Open Sans", sans-serif;
+    }
+  }
 
-        .ant-form-item-control{
-            margin: 0;
-        }
+  .group-btn {
+    // outline: 1px solid chartreuse;
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
 
-        button{
-            background-color: #6419E6;
-            min-width: 250px;
-            min-height: 45px;
-            font-family: "Open Sans", sans-serif;
-            font-weight: 600;
-          }
+    .ant-form-item-control {
+      margin: 0;
     }
 
-    // button{
-    //     background-color: #6419E6;
-    //     min-width: 250px;
-    //     min-height: 45px;
-    //     font-family: "Open Sans", sans-serif;
-    //     font-weight: 600;
-    //   }
+    button {
+      background-color: #6419e6;
+      min-width: 250px;
+      min-height: 45px;
+      font-family: "Open Sans", sans-serif;
+      font-weight: 600;
+    }
+  }
+
+  // button{
+  //     background-color: #6419E6;
+  //     min-width: 250px;
+  //     min-height: 45px;
+  //     font-family: "Open Sans", sans-serif;
+  //     font-weight: 600;
+  //   }
 }

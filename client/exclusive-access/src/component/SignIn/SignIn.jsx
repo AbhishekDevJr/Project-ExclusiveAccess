@@ -127,7 +127,7 @@ function SignIn() {
                             },
                         ]}
                     >
-                        <Input />
+                        <Input.Password classNames='input-passwords' />
                     </Form.Item>
                 </div>
 
