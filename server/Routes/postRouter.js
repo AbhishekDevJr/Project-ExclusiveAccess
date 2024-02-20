@@ -3,3 +3,5 @@ const router = express.Router();
 const postController = require('../Controllers/postController');
 
 router.post('/', postController.posts);
+
+module.exports = router;

@@ -3,10 +3,12 @@
 import { Button, Form, Input } from "antd";
 import './signin.scss';
 import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 
 function SignIn() {
 
     const [form] = Form.useForm();
+    const navigate = useNavigate();
 
     const signInApi = async (reqObj) => {
         try {
@@ -21,6 +23,9 @@ function SignIn() {
             const userRes = await userSignIn.json();
 
             if (userRes.resCode === 'Authenticated') {
+
+                localStorage.setItem('userAuth', userRes.token);
+
                 toast.success(`${userRes.message}`, {
                     position: "top-center",
                     autoClose: 3000,
@@ -31,6 +36,8 @@ function SignIn() {
                     progress: undefined,
                     theme: "dark",
                 });
+
+                navigate('/');
             }
             else if (userRes.resCode === 'Authentication Failed') {
                 toast.error(`${userRes.message}`, {

@@ -3,6 +3,7 @@ const asyncHandler = require('express-async-handler');
 const express_validator = require('express-validator');
 const { body, validationResult } = require('express-validator');
 const UserModel = require('../Models/user');
+const jwt = require('jsonwebtoken');
 
 const godUser = ['abhishek007coc@gmail.com'];
 
@@ -69,10 +70,13 @@ exports.signin = asyncHandler(async (req, res, next) => {
     const userFind = await UserModel.findOne({ email: req.body.username });
     if (userFind) { //userFind
         if (String(userFind.password) === String(req.body.password)) { //String(userFind.password) === String(req.body.password)
-            res.json({
+
+            const token = jwt.sign({
                 resCode: 'Authenticated',
                 message: `${req.body.username} successfully signed in.`
-            });
+            }, 'mySecretKey');
+
+            res.json({ token: token, resCode: 'Authenticated', message: `${req.body.username} successfully signed in.` });
             // res.redirect('http://localhost:3000/exclusive');
         }
         else {
