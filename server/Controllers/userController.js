@@ -73,7 +73,8 @@ exports.signin = asyncHandler(async (req, res, next) => {
 
             const token = jwt.sign({
                 resCode: 'Authenticated',
-                message: `${req.body.username} successfully signed in.`
+                message: `${req.body.username} successfully signed in.`,
+                username: req.body.username
             }, 'mySecretKey');
 
             res.json({ token: token, resCode: 'Authenticated', message: `${req.body.username} successfully signed in.` });

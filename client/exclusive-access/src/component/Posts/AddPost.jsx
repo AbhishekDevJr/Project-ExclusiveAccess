@@ -1,12 +1,69 @@
 import { Button, Form, Input } from "antd";
+import { ToastContainer, toast } from "react-toastify";
 
 function AddPost() {
 
-    const addPostApi = (reqBody) => {
+    const userAuthToken = localStorage.getItem('userAuth');
+
+    const addPostApi = async (reqBody) => {
         //Handle Add Post API Here
+
+        try {
+            const addpost = await fetch('http://localhost:5000/post/add', {
+                method: 'POST',
+                body: JSON.stringify({ ...reqBody, time_stamp: new Date(), token: userAuthToken }),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                    // Authorization: `Bearer ${userAuthToken}`
+                },
+            });
+
+            const addPostRes = await addpost.json();
+
+            if (addPostRes.resCode === 'postCreated') {
+                toast.success(`${addPostRes.message}`, {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+            }
+            else if (addPostRes.resCode === 'badRequest') {
+                toast.success(`${addPostRes.message}`, {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+            }
+            else {
+                toast.success(`Unhandled Server Error!`, {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+            }
+
+        } catch (e) {
+            console.log(e);
+        }
     };
 
     const onFinish = (data) => {
+        console.log('Data------------>', data);
         addPostApi(data);
     }
 
@@ -72,6 +129,19 @@ function AddPost() {
                     </Form.Item>
                 </div>
             </Form>
+            <ToastContainer
+                position="top-center"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                // pauseOnHover
+                theme="dark"
+            // transition: Bounce
+            />
         </div>
     )
 }

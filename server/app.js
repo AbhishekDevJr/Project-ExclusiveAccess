@@ -30,7 +30,7 @@ app.use(bodyParser.json())
 app.use(cors())
 app.use('/', indexRouter);
 app.use('/users', userRouter);
-app.use('/posts', postRouter);
+app.use('/post', postRouter);
 
 app.listen(5000, () => console.log('Server Runnig on PORT : 5000'));
 
