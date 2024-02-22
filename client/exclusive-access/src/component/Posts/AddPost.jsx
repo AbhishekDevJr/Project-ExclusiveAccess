@@ -1,5 +1,6 @@
 import { Button, Form, Input } from "antd";
 import { ToastContainer, toast } from "react-toastify";
+import './addpost.scss';
 
 function AddPost() {
 
@@ -86,7 +87,7 @@ function AddPost() {
 
                 <h1>Add Post</h1>
 
-                <div className='group-signin-inputs'>
+                <div className='group-post-inputs'>
                     <Form.Item
                         label="Title"
                         name="title"
@@ -112,7 +113,7 @@ function AddPost() {
                             },
                         ]}
                     >
-                        <Input.TextArea classNames='input-passwords' />
+                        <Input.TextArea classNames='input-passwords' autoSize={true} />
                     </Form.Item>
                 </div>
 

@@ -188,7 +188,7 @@ const SignUp = () => {
                             key='submit'
                         >
                             <Button type="primary" htmlType="submit">
-                                SUBMIT
+                                SIGN UP
                             </Button>
                         </Form.Item>
                     </div>

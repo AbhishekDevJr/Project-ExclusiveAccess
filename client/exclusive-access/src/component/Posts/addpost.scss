@@ -1,4 +1,4 @@
-.container-exclusiveAccess {
+.container-add-post {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,9 +10,7 @@
         font-size: 40px;
     }
 
-    .group-input-exclusive {
-        // outline: 1px solid cyan;
-
+    .group-post-inputs {
         display: flex;
         flex-direction: column;
         gap: 60px;
@@ -21,7 +19,7 @@
             background-color: transparent;
         }
 
-        #basic_exclusivePasscode {
+        #basic_description {
             background-color: transparent;
         }
 
@@ -31,7 +29,8 @@
             align-items: flex-start;
         }
 
-        input {
+        input,
+        textarea {
             min-width: 400px;
             background-color: transparent;
             color: #A6ADBA;
@@ -41,6 +40,11 @@
             padding: 10px;
         }
 
+        textarea {
+            min-height: 100px;
+            max-height: 110px;
+        }
+
         label {
             color: #A6ADBA;
             font-family: "Open Sans", sans-serif;
@@ -48,8 +52,7 @@
     }
 
     .group-btn {
-        // outline: 1px solid chartreuse;
-        margin-top: 60px;
+        margin-top: 120px;
         display: flex;
         justify-content: center;
 

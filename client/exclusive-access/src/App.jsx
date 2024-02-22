@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import './App.css'
-import SignUp from './component/SignUp/SignUp'
+import './App.css';
+import SignUp from './component/SignUp/SignUp';
 import ExclusiveAccess from './component/ExclusiveAccess/ExclusiveAccess';
 import SignIn from './component/SignIn/SignIn';
 import Header from './component/Header/Header';
