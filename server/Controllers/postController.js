@@ -8,16 +8,15 @@ exports.posts = asyncHandler(async (req, res, next) => {
 
     const token = req.body.token;
 
-    console.log('Req header----------->', req.body.token, req.body.title && req.body.description && req.body.time_stamp);
-
     if (req.body.title && req.body.description && req.body.time_stamp && token) {
 
         const decoded = jwt.verify(token, 'mySecretKey');
         const username = decoded.username;
 
         const user = await userModel.findOne({ email: username });
+        console.log('User--------->', user);
         if (user) {
-            const newPost = new postModel({ ...req.body, createdBy: user._id });
+            const newPost = new postModel({ ...req.body, createdBy: user._id, author: username });
             await newPost.save();
 
             res.json({
