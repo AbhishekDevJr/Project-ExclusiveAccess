@@ -9,7 +9,6 @@ const SignUp = () => {
     const [form] = Form.useForm();
 
     const onFinish = async (values) => {
-        console.log('Success:', values.password === values.conPassword, values.password, values.conPassword);
         if (values.password === values.conPassword) {
 
             form.resetFields();
@@ -80,7 +79,7 @@ const SignUp = () => {
     };
 
     const onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo);
+        alert(`Please enter valid data for following fields:- ${errorInfo.errorFields.map((item) => item.name[0]).join()}`);
     };
 
     return (

@@ -14,7 +14,6 @@ exports.posts = asyncHandler(async (req, res, next) => {
         const username = decoded.username;
 
         const user = await userModel.findOne({ email: username });
-        console.log('User--------->', user);
         if (user) {
             const newPost = new postModel({ ...req.body, createdBy: user._id, author: username });
             await newPost.save();

@@ -79,7 +79,6 @@ function SignIn() {
                 });
             }
 
-            console.log('userSignIn-------->', userRes);
         }
         catch (e) {
             console.log('Error---->', e);
@@ -87,13 +86,11 @@ function SignIn() {
     }
 
     const onFinish = (data) => {
-        console.log('data----------->', data);
         signInApi(data);
         form.resetFields();
     }
 
     const onFinishFailed = (data) => {
-        console.log('error--------->', data);
         alert(`Please enter valid data for following fields:- ${data.errorFields.map((item) => item.name[0]).join()}`);
     }
 

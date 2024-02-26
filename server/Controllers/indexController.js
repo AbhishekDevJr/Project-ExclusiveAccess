@@ -14,8 +14,6 @@ exports.index = asyncHandler((req, res, next) => {
 exports.getPosts = asyncHandler(async (req, res, next) => {
     const allPosts = await postModel.find();
 
-    console.log('Allposts------>', allPosts);
-
     if (allPosts) {
         res.json({
             resCode: 'allPosts',

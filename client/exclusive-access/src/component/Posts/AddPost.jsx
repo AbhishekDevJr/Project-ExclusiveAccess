@@ -67,12 +67,10 @@ function AddPost() {
     };
 
     const onFinish = (data) => {
-        console.log('Data------------>', data);
         addPostApi(data);
     }
 
     const onFinishFailed = (data) => {
-        console.log('error--------->', data);
         alert(`Please enter valid data for following fields:- ${data.errorFields.map((item) => item.name[0]).join()}`);
     }
 

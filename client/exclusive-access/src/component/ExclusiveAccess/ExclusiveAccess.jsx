@@ -20,8 +20,6 @@ function ExclusiveAccess() {
 
             const resFinal = await exclusiveRes.json();
 
-            console.log('Res------------->', resFinal);
-
             if (resFinal.resCode === 'OK') {
 
                 toast.success(`${resFinal.message}`, {
@@ -66,7 +64,6 @@ function ExclusiveAccess() {
     }
 
     const onFinish = (data) => {
-        console.log('data------->', data);
         if (data.exclusivePasscode.toLowerCase() === 'rasengan') {
             exclusiveAPI(data);
             form.resetFields();
@@ -85,7 +82,6 @@ function ExclusiveAccess() {
         }
     };
     const onFinishFailed = (data) => {
-        console.log('Failed--------------->', data.errorFields.map((item) => item.name[0]).join());
         alert(`Please enter valid data for following fields:- ${data.errorFields.map((item) => item.name[0]).join()}`);
     };
 
