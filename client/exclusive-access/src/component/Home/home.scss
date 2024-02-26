@@ -27,6 +27,19 @@
                 color: #D926A9;
             }
         }
+
+        a {
+            text-decoration: none;
+        }
+
+        #btn-addPost {
+            background-color: #6419E6;
+            color: #fff;
+            padding: 6px;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
     }
 
     .container-posts {
@@ -36,6 +49,43 @@
         gap: 30px;
 
         .post-box {
+            max-width: 600px;
+            min-width: 600px;
+            padding: 20px;
+            background-color: #15191E;
+            border-radius: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+
+            .post-actionBtns {
+                display: flex;
+                gap: 10px;
+
+                svg:first-child {
+                    fill: none;
+                }
+            }
+
+            svg {
+                fill: #D04848;
+                cursor: pointer;
+            }
+
+            p {
+                font-family: "Open Sans", sans-serif;
+                color: #A6ADBA;
+                font-weight: 500;
+                font-size: 18px;
+            }
+
+            p:first-child {
+                font-weight: 600;
+                font-size: 20px;
+            }
+        }
+
+        .post-box-nonSignIn {
             max-width: 600px;
             min-width: 600px;
             padding: 20px;
