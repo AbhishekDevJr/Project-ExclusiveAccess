@@ -4,6 +4,8 @@ const express_validator = require('express-validator');
 const { body, validationResult } = require('express-validator');
 const UserModel = require('../Models/user');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 const godUser = ['abhishek007coc@gmail.com'];
 
@@ -17,7 +19,7 @@ exports.user = asyncHandler((req, res, next) => {
 });
 
 exports.signup = asyncHandler(async (req, res, next) => {
-    console.log('Req--------------->', req.body);
+
     const userExists = await UserModel.findOne({ email: req.body.email });
     if (userExists) { //userExists
         res.json({
@@ -27,9 +29,12 @@ exports.signup = asyncHandler(async (req, res, next) => {
         });
     }
     else {
-        const userNew = new UserModel(req.body);
+
+        const salt = await bcrypt.genSalt(saltRounds);
+        const hashedPassword = await bcrypt.hash(req.body.password, salt);
+
+        const userNew = new UserModel({ ...req.body, password: hashedPassword });
         await userNew.save();
-        console.log('userNew------->', userNew);
         res.json({
             resCode: 'UserCreated',
             message: 'User Created Successfully.',
@@ -39,7 +44,6 @@ exports.signup = asyncHandler(async (req, res, next) => {
 });
 
 exports.exclusive = asyncHandler(async (req, res, next) => {
-    console.log('Ex Req----------->', req.body);
 
     const hasExclusiveAccess = await UserModel.findOne({ email: req.body.username });
 
@@ -58,27 +62,26 @@ exports.exclusive = asyncHandler(async (req, res, next) => {
 
         res.json({
             resCode: 'OK',
-            message: `${req.body.username} now has Exclusive Access.` //Use updateUserAccess.username
+            message: `${req.body.username} now has Exclusive Access.`
         });
     }
-
-    // res.json(req.body);
 });
 
 exports.signin = asyncHandler(async (req, res, next) => {
-    console.log('Req------------>', req.body);
-    const userFind = await UserModel.findOne({ email: req.body.username });
-    if (userFind) { //userFind
-        if (String(userFind.password) === String(req.body.password)) { //String(userFind.password) === String(req.body.password)
 
+    const userFind = await UserModel.findOne({ email: req.body.username });
+    if (userFind) {
+
+        const isPasswordCorrect = await bcrypt.compare(req.body.password, userFind.password);
+
+        if (isPasswordCorrect) {
             const token = jwt.sign({
                 resCode: 'Authenticated',
                 message: `${req.body.username} successfully signed in.`,
                 username: req.body.username
             }, 'mySecretKey');
 
-            res.json({ token: token, resCode: 'Authenticated', message: `${req.body.username} successfully signed in.` });
-            // res.redirect('http://localhost:3000/exclusive');
+            res.json({ token: token, resCode: 'Authenticated', message: `${req.body.username} successfully signed in.`, expTime: 3600000 });
         }
         else {
             res.json({

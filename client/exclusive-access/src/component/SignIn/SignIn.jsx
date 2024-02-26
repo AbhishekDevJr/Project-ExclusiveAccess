@@ -4,6 +4,7 @@ import { Button, Form, Input } from "antd";
 import './signin.scss';
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
+import moment from "moment";
 
 function SignIn() {
 
@@ -25,6 +26,8 @@ function SignIn() {
             if (userRes.resCode === 'Authenticated') {
 
                 localStorage.setItem('userAuth', userRes.token);
+                localStorage.setItem('expTime', userRes.expTime);
+                localStorage.setItem('signedInAt', moment());
 
                 toast.success(`${userRes.message}`, {
                     position: "top-center",
@@ -104,6 +107,7 @@ function SignIn() {
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
                 autoComplete="off"
+                form={form}
             >
 
                 <h1>Sign In</h1>

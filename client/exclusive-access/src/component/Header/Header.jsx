@@ -8,6 +8,9 @@ function Header() {
 
     const handleSignOut = () => {
         localStorage.setItem('userAuth', '');
+        localStorage.setItem('expTime', '');
+        localStorage.setItem('signedInAt', '');
+        localStorage.setItem('userNotified', '');
         navigate('/signin');
     };
 

@@ -7,8 +7,22 @@ import Header from './component/Header/Header';
 import AddPost from './component/Posts/AddPost';
 import Home from './component/Home/Home';
 import ProtectedRoute from './component/ProtectedRoute/ProtectedRoute';
+import { useEffect } from 'react';
+import moment from 'moment';
 
 function App() {
+
+  useEffect(() => {
+    const tokenExpiration = localStorage.getItem('expTime');
+
+    if (tokenExpiration && moment() > moment(localStorage.getItem('signedInAt')).add(tokenExpiration, 'milliseconds')) {
+      localStorage.setItem('userAuth', '');
+      localStorage.setItem('expTime', '');
+      localStorage.setItem('signedInAt', '');
+      window.location.href = '/';
+    }
+
+  }, []);
 
   return (
     <BrowserRouter>

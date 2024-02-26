@@ -5,6 +5,7 @@ import './addpost.scss';
 function AddPost() {
 
     const userAuthToken = localStorage.getItem('userAuth');
+    const [form] = Form.useForm();
 
     const addPostApi = async (reqBody) => {
         //Handle Add Post API Here
@@ -32,6 +33,8 @@ function AddPost() {
                     progress: undefined,
                     theme: "dark",
                 });
+                form.resetFields();
+                window.location.href = '/';
             }
             else if (addPostRes.resCode === 'badRequest') {
                 toast.success(`${addPostRes.message}`, {
@@ -83,6 +86,7 @@ function AddPost() {
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
                 autoComplete="off"
+                form={form}
             >
 
                 <h1>Add Post</h1>
