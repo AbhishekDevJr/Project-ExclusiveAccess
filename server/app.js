@@ -27,7 +27,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-app.use(cors())
+app.use(cors({
+    origin: 'http://localhost:3000',
+}));
 app.use('/', indexRouter);
 app.use('/users', userRouter);
 app.use('/post', postRouter);
