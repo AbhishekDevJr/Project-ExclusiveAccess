@@ -10,7 +10,7 @@ exports.posts = asyncHandler(async (req, res, next) => {
 
     if (req.body.title && req.body.description && req.body.time_stamp && token) {
 
-        const decoded = jwt.verify(token, 'mySecretKey');
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
         const username = decoded.username;
 
         const user = await userModel.findOne({ email: username });

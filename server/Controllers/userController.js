@@ -79,7 +79,7 @@ exports.signin = asyncHandler(async (req, res, next) => {
                 resCode: 'Authenticated',
                 message: `${req.body.username} successfully signed in.`,
                 username: req.body.username
-            }, 'mySecretKey');
+            }, process.env.JWT_SECRET);
 
             res.json({ token: token, resCode: 'Authenticated', message: `${req.body.username} successfully signed in.`, expTime: 3600000 });
         }

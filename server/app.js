@@ -5,6 +5,7 @@ const userRouter = require('./Routes/userRouter');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const postRouter = require('./Routes/postRouter');
+require('dotenv').config();
 
 const app = express();
 
@@ -34,6 +35,6 @@ app.use('/', indexRouter);
 app.use('/users', userRouter);
 app.use('/post', postRouter);
 
-app.listen(5000, () => console.log('Server Runnig on PORT : 5000'));
+app.listen(process.env.PORT || 5000, () => console.log('Server Runnig on PORT : 5000'));
 
 module.exports = app;
