@@ -5,11 +5,11 @@ const userRouter = require('./Routes/userRouter');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const postRouter = require('./Routes/postRouter');
-require('dotenv').config();
+let dotenv = require('dotenv').config();
 
 const app = express();
 
-mongoose.connect('mongodb://localhost:27017/ExclusiveAccess', {
+mongoose.connect(process.env.MONGO_CONNECTION_STRING, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
