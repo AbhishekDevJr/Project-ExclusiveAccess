@@ -11,7 +11,7 @@ function AddPost() {
         //Handle Add Post API Here
 
         try {
-            const addpost = await fetch('http://localhost:5000/post/add', {
+            const addpost = await fetch('https://project-exclusiveaccess.onrender.com/post/add', {
                 method: 'POST',
                 body: JSON.stringify({ ...reqBody, time_stamp: new Date(), token: userAuthToken }),
                 headers: {

@@ -14,7 +14,7 @@ const SignUp = () => {
             form.resetFields();
             try {
                 //Call POST API Here
-                const userAdd = await fetch('http://localhost:5000/users/signup', {
+                const userAdd = await fetch('https://project-exclusiveaccess.onrender.com/users/signup', {
                     method: 'POST',
                     body: JSON.stringify(values),
                     headers: {

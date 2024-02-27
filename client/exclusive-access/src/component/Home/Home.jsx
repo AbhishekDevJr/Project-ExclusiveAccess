@@ -11,7 +11,7 @@ function Home() {
 
     const getPostsApi = async () => {
         try {
-            const allPosts = await fetch('http://localhost:5000/get-posts', {
+            const allPosts = await fetch('https://project-exclusiveaccess.onrender.com/get-posts', {
                 method: 'GET',
                 body: JSON.stringify(),
                 headers: {

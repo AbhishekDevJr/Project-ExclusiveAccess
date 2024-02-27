@@ -10,7 +10,7 @@ function ExclusiveAccess() {
 
     const exclusiveAPI = async (reqObj) => {
         try {
-            const exclusiveRes = await fetch('http://localhost:5000/users/exclusive', {
+            const exclusiveRes = await fetch('https://project-exclusiveaccess.onrender.com/users/exclusive', {
                 method: 'POST',
                 body: JSON.stringify(reqObj),
                 headers: {
