@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: 'https://exclusiveaccess.netlify.app',
 }));
 app.use('/', indexRouter);
 app.use('/users', userRouter);
