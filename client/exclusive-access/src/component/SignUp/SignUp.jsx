@@ -87,7 +87,7 @@ const SignUp = () => {
     };
 
     return (
-        <Spin tip="Fetching..." size="large" fullscreen spinning={isLoading}>
+        <Spin tip="Fetching..." size="large" fullscreen={isLoading} spinning={isLoading}>
             <div className='container-singup'>
                 <div className='container-signup-form'>
                     <Form

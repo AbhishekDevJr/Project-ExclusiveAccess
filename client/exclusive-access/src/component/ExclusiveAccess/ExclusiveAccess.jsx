@@ -90,7 +90,7 @@ function ExclusiveAccess() {
     };
 
     return (
-        <Spin tip="Fetching..." size="large" fullscreen spinning={isLoading}>
+        <Spin tip="Fetching..." size="large" fullscreen={isLoading} spinning={isLoading}>
             <div className='container-exclusiveAccess'>
                 <Form
                     name="basic"

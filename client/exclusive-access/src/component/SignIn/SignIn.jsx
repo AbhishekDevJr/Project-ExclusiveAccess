@@ -99,7 +99,7 @@ function SignIn() {
     }
 
     return (
-        <Spin tip="Fetching..." size="large" fullscreen spinning={isLoading}>
+        <Spin tip="Fetching..." size="large" fullscreen={isLoading} spinning={isLoading}>
             <div className='container-signin'>
                 <Form
                     name="basic"

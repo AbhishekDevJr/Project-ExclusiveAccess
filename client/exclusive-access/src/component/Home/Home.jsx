@@ -52,7 +52,7 @@ function Home() {
     }, []);
 
     return (
-        <Spin tip="Fetching..." size="large" fullscreen spinning={isLoading}>
+        <Spin tip="Fetching..." size="large" fullscreen={isLoading} spinning={isLoading}>
             <div className='container-home'>
                 <h1>Special club for <span>members</span> only</h1>
 
