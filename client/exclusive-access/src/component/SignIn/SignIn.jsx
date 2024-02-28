@@ -131,7 +131,7 @@ function SignIn() {
                             {
                                 required: true,
                                 message: 'Please input a valid Passcode!',
-                                pattern: /^[A-Za-z]+$/
+                                pattern: /^[ A-Za-z0-9_@./#&+-]*$/
                             },
                         ]}
                     >

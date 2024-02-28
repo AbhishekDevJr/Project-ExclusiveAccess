@@ -155,7 +155,7 @@ const SignUp = () => {
                                 {
                                     required: true,
                                     message: 'Please input your Password!',
-                                    // pattern:
+                                    pattern: /^[ A-Za-z0-9_@./#&+-]*$/
                                 },
                             ]}
                             key='password'
@@ -170,6 +170,7 @@ const SignUp = () => {
                                 {
                                     required: true,
                                     message: 'Please input your Password!',
+                                    pattern: /^[ A-Za-z0-9_@./#&+-]*$/
                                 },
                             ]}
                             key='cPassword'
