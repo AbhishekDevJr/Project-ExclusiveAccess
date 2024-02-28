@@ -13,6 +13,7 @@ mongoose.connect(process.env.MONGO_CONNECTION_STRING, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     tls: true,
+    tlsInsecure: true,
 });
 
 mongoose.connection.on('error', (err) => {
@@ -30,7 +31,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.use(cors({
-    origin: '*',
+    origin: 'https://exclusiveaccess.netlify.app',
 }));
 app.use('/', indexRouter);
 app.use('/users', userRouter);

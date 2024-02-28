@@ -13,6 +13,7 @@ exports.index = asyncHandler((req, res, next) => {
 
 exports.getPosts = asyncHandler(async (req, res, next) => {
     const allPosts = await postModel.find();
+    console.log('All Posts--------->', allPosts);
 
     if (allPosts) {
         res.json({
