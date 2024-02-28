@@ -1,16 +1,19 @@
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, Spin } from "antd";
 import { ToastContainer, toast } from "react-toastify";
 import './addpost.scss';
+import { useState } from "react";
 
 function AddPost() {
-
     const userAuthToken = localStorage.getItem('userAuth');
     const [form] = Form.useForm();
+    const [isLoading, setIsLoading] = useState(false);
+
 
     const addPostApi = async (reqBody) => {
         //Handle Add Post API Here
 
         try {
+            setIsLoading(true);
             const addpost = await fetch('https://project-exclusiveaccess.onrender.com/post/add', {
                 method: 'POST',
                 body: JSON.stringify({ ...reqBody, time_stamp: new Date(), token: userAuthToken }),
@@ -60,8 +63,10 @@ function AddPost() {
                     theme: "dark",
                 });
             }
+            setIsLoading(false);
 
         } catch (e) {
+            setIsLoading(false);
             console.log(e);
         }
     };
@@ -75,77 +80,79 @@ function AddPost() {
     }
 
     return (
-        <div className='container-add-post'>
-            <Form
-                name="basic"
-                initialValues={{
-                    remember: true,
-                }}
-                onFinish={onFinish}
-                onFinishFailed={onFinishFailed}
-                autoComplete="off"
-                form={form}
-            >
+        <Spin tip="Fetching..." size="large" fullscreen spinning={isLoading}>
+            <div className='container-add-post'>
+                <Form
+                    name="basic"
+                    initialValues={{
+                        remember: true,
+                    }}
+                    onFinish={onFinish}
+                    onFinishFailed={onFinishFailed}
+                    autoComplete="off"
+                    form={form}
+                >
 
-                <h1>Add Post</h1>
+                    <h1>Add Post</h1>
 
-                <div className='group-post-inputs'>
-                    <Form.Item
-                        label="Title"
-                        name="title"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input a valid Title!',
-                                pattern: /(?!^$)([^\s])/
-                            },
-                        ]}
-                    >
-                        <Input />
-                    </Form.Item>
+                    <div className='group-post-inputs'>
+                        <Form.Item
+                            label="Title"
+                            name="title"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input a valid Title!',
+                                    pattern: /(?!^$)([^\s])/
+                                },
+                            ]}
+                        >
+                            <Input />
+                        </Form.Item>
 
-                    <Form.Item
-                        label="Description"
-                        name="description"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input a valid Description!',
-                                pattern: /(?!^$)([^\s])/
-                            },
-                        ]}
-                    >
-                        <Input.TextArea classNames='input-passwords' autoSize={true} />
-                    </Form.Item>
-                </div>
+                        <Form.Item
+                            label="Description"
+                            name="description"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input a valid Description!',
+                                    pattern: /(?!^$)([^\s])/
+                                },
+                            ]}
+                        >
+                            <Input.TextArea classNames='input-passwords' autoSize={true} />
+                        </Form.Item>
+                    </div>
 
-                <div className='group-btn'>
-                    <Form.Item
-                        wrapperCol={{
-                            offset: 8,
-                            span: 16,
-                        }}
-                    >
-                        <Button type="primary" htmlType="submit">
-                            POST
-                        </Button>
-                    </Form.Item>
-                </div>
-            </Form>
-            <ToastContainer
-                position="top-center"
-                autoClose={3000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                // pauseOnHover
-                theme="dark"
-            // transition: Bounce
-            />
-        </div>
+                    <div className='group-btn'>
+                        <Form.Item
+                            wrapperCol={{
+                                offset: 8,
+                                span: 16,
+                            }}
+                        >
+                            <Button type="primary" htmlType="submit">
+                                POST
+                            </Button>
+                        </Form.Item>
+                    </div>
+                </Form>
+                <ToastContainer
+                    position="top-center"
+                    autoClose={3000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    // pauseOnHover
+                    theme="dark"
+                // transition: Bounce
+                />
+            </div>
+        </Spin>
     )
 }
 

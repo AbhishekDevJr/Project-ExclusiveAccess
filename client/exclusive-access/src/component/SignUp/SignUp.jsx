@@ -1,12 +1,13 @@
-// import React, { useState } from 'react';
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, Spin } from 'antd';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './signup.scss';
+import { useState } from 'react';
 
 const SignUp = () => {
-
     const [form] = Form.useForm();
+    const [isLoading, setIsLoading] = useState(false);
+
 
     const onFinish = async (values) => {
         if (values.password === values.conPassword) {
@@ -14,6 +15,7 @@ const SignUp = () => {
             form.resetFields();
             try {
                 //Call POST API Here
+                setIsLoading(true);
                 const userAdd = await fetch('https://project-exclusiveaccess.onrender.com/users/signup', {
                     method: 'POST',
                     body: JSON.stringify(values),
@@ -60,7 +62,9 @@ const SignUp = () => {
                         theme: "dark",
                     });
                 }
+                setIsLoading(false);
             } catch (e) {
+                setIsLoading(false);
                 console.log('Error-->', e);
             }
         }
@@ -83,132 +87,134 @@ const SignUp = () => {
     };
 
     return (
-        <div className='container-singup'>
-            <div className='container-signup-form'>
-                <Form
-                    name="basic"
-                    initialValues={{
-                        remember: true,
-                    }}
-                    onFinish={onFinish}
-                    onFinishFailed={onFinishFailed}
-                    autoComplete="off"
-                    form={form}
-                >
+        <Spin tip="Fetching..." size="large" fullscreen spinning={isLoading}>
+            <div className='container-singup'>
+                <div className='container-signup-form'>
+                    <Form
+                        name="basic"
+                        initialValues={{
+                            remember: true,
+                        }}
+                        onFinish={onFinish}
+                        onFinishFailed={onFinishFailed}
+                        autoComplete="off"
+                        form={form}
+                    >
 
-                    <h1>Sign up</h1>
+                        <h1>Sign up</h1>
 
-                    <div className='group-input-names'>
-                        <Form.Item
-                            label="First Name"
-                            name="firstName"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'Please input a valid First Name!',
-                                    pattern: /^[A-Za-z]+$/
-                                },
-                            ]}
-                            key='firstname'
-                        >
-                            <Input />
-                        </Form.Item>
+                        <div className='group-input-names'>
+                            <Form.Item
+                                label="First Name"
+                                name="firstName"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please input a valid First Name!',
+                                        pattern: /^[A-Za-z]+$/
+                                    },
+                                ]}
+                                key='firstname'
+                            >
+                                <Input />
+                            </Form.Item>
 
-                        <Form.Item
-                            label="Last Name"
-                            name="lastName"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'Please input a valid Last Name!',
-                                    pattern: /^[A-Za-z]+$/
-                                },
-                            ]}
-                            key='lastName'
-                        >
-                            <Input onCha />
-                        </Form.Item>
-                    </div>
+                            <Form.Item
+                                label="Last Name"
+                                name="lastName"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please input a valid Last Name!',
+                                        pattern: /^[A-Za-z]+$/
+                                    },
+                                ]}
+                                key='lastName'
+                            >
+                                <Input onCha />
+                            </Form.Item>
+                        </div>
 
-                    <div className='group-input-email'>
-                        <Form.Item
-                            label="Emai"
-                            name="email"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'Please input a valid Email Id!',
-                                    pattern: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
-                                },
-                            ]}
-                            key='email'
-                        >
-                            <Input />
-                        </Form.Item>
-                    </div>
+                        <div className='group-input-email'>
+                            <Form.Item
+                                label="Emai"
+                                name="email"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please input a valid Email Id!',
+                                        pattern: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
+                                    },
+                                ]}
+                                key='email'
+                            >
+                                <Input />
+                            </Form.Item>
+                        </div>
 
-                    <div className='group-input-password'>
-                        <Form.Item
-                            label="Password"
-                            name="password"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'Please input your Password!',
-                                    pattern: /^[ A-Za-z0-9_@./#&+-]*$/
-                                },
-                            ]}
-                            key='password'
-                        >
-                            <Input.Password classNames='input-passwords' />
-                        </Form.Item>
+                        <div className='group-input-password'>
+                            <Form.Item
+                                label="Password"
+                                name="password"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please input your Password!',
+                                        pattern: /^[ A-Za-z0-9_@./#&+-]*$/
+                                    },
+                                ]}
+                                key='password'
+                            >
+                                <Input.Password classNames='input-passwords' />
+                            </Form.Item>
 
-                        <Form.Item
-                            label="Confirm Password"
-                            name="conPassword"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'Please input your Password!',
-                                    pattern: /^[ A-Za-z0-9_@./#&+-]*$/
-                                },
-                            ]}
-                            key='cPassword'
-                        >
-                            <Input.Password classNames='input-passwords' />
-                        </Form.Item>
-                    </div>
+                            <Form.Item
+                                label="Confirm Password"
+                                name="conPassword"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please input your Password!',
+                                        pattern: /^[ A-Za-z0-9_@./#&+-]*$/
+                                    },
+                                ]}
+                                key='cPassword'
+                            >
+                                <Input.Password classNames='input-passwords' />
+                            </Form.Item>
+                        </div>
 
-                    <div className='group-input-btn'>
-                        <Form.Item
-                            wrapperCol={{
-                                offset: 8,
-                                span: 16,
-                            }}
-                            key='submit'
-                        >
-                            <Button type="primary" htmlType="submit">
-                                SIGN UP
-                            </Button>
-                        </Form.Item>
-                    </div>
+                        <div className='group-input-btn'>
+                            <Form.Item
+                                wrapperCol={{
+                                    offset: 8,
+                                    span: 16,
+                                }}
+                                key='submit'
+                            >
+                                <Button type="primary" htmlType="submit">
+                                    SIGN UP
+                                </Button>
+                            </Form.Item>
+                        </div>
 
-                    <ToastContainer
-                        position="top-center"
-                        autoClose={3000}
-                        hideProgressBar={false}
-                        newestOnTop={false}
-                        closeOnClick
-                        rtl={false}
-                        pauseOnFocusLoss
-                        draggable
-                        // pauseOnHover
-                        theme="dark"
-                    // transition: Bounce
-                    />
-                </Form>
+                        <ToastContainer
+                            position="top-center"
+                            autoClose={3000}
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick
+                            rtl={false}
+                            pauseOnFocusLoss
+                            draggable
+                            // pauseOnHover
+                            theme="dark"
+                        // transition: Bounce
+                        />
+                    </Form>
+                </div>
             </div>
-        </div>
+        </Spin>
     );
 }
 export default SignUp;
