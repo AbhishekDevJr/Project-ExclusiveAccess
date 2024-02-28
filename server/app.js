@@ -12,6 +12,9 @@ const app = express();
 mongoose.connect(process.env.MONGO_CONNECTION_STRING, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    tls: {
+        minTLSVersion: 'TLSv1.2',
+    },
 });
 
 mongoose.connection.on('error', (err) => {
