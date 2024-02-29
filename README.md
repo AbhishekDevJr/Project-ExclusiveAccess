@@ -1,5 +1,7 @@
 <h1>Exclusive Access - Full-Stack(MERN Stack) Project</h1>
 
+<h1><a href = "https://exclusiveaccess.netlify.app/">Live Demo</a></h1>
+
 <p>This repository holds the Codebase for Exclusive Access Project. This is a full-stack project built using Technologies/Frameworks primarily revolving around MERN Stack.</p>
 
 <h2>List of Technologies, Frameworks & Libraries used.</h2>
