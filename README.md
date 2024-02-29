@@ -16,8 +16,8 @@
 
 <h2>Features Implemented</h2>
 <ul>
-        <li>User Registration: Handling User Registration using SignUP Rest API, validating & storing user to the DataBase.</li>
-        <li>User Authentication: Handlign User Authentication using SignIN API, Generating Token & Expiration to handle SignedIN user's session</li>
+        <li><strong>User Registration:</strong> Handling User Registration using SignUP Rest API, validating & storing user to the DataBase.</li>
+        <li><strong>User Authentication:</strong> Handlign User Authentication using SignIN API, Generating Token & Expiration to handle SignedIN user's session</li>
         <li><strong>UI:</strong>Built UI using ReactJS, Sass, Antd Component</li>
         <li><strong>Routing:</strong>Handled Routing using React-Router-Dom</li>
         <li><strong>Database Integration:</strong> Using Mongoose & MongoDB to handle interactions of Back-End with DB & Store Data.</li>
