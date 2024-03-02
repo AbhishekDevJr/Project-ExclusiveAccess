@@ -27,27 +27,24 @@
         <li><strong>Dependency</strong> Yarn for managing various project dependencies.</li>
 </ul>
 
-![image](https://github.com/AbhishekDevJr/Project-ExclusiveAccess/assets/101062487/18da4dd0-8ac3-4435-819a-23e301c5bd35)
-
-<br>
-
-![image](https://github.com/AbhishekDevJr/Project-ExclusiveAccess/assets/101062487/3328df9d-bad5-45de-8d34-5e7d8bb5e5f8)
+![image](https://github.com/AbhishekDevJr/Project-ExclusiveAccess/assets/101062487/dda19ee1-0ad4-4019-a3ae-c1a7443b960e)
 
 
 <br>
 
-![image](https://github.com/AbhishekDevJr/Project-ExclusiveAccess/assets/101062487/6194721a-ea31-430c-b652-1f72d7203c91)
+![image](https://github.com/AbhishekDevJr/Project-ExclusiveAccess/assets/101062487/9fc13c12-9aa4-4640-affe-9551cecad5a9)
 
 
 <br>
 
-![image](https://github.com/AbhishekDevJr/Project-ExclusiveAccess/assets/101062487/251c89e3-73f8-48c9-834b-6e86f34014e4)
+![image](https://github.com/AbhishekDevJr/Project-ExclusiveAccess/assets/101062487/74aa3e6b-bc91-40ed-8b53-a9659aa099aa)
+
+
+<br>
+
+![image](https://github.com/AbhishekDevJr/Project-ExclusiveAccess/assets/101062487/662932e0-5a0d-405c-8ee6-c640ed8f268b)
+
 
 <br>
 
 ![image](https://github.com/AbhishekDevJr/Project-ExclusiveAccess/assets/101062487/1bb1563c-fec0-4a6d-b8ef-aef8da327965)
-
-
-<br>
-
-![image](https://github.com/AbhishekDevJr/Project-ExclusiveAccess/assets/101062487/7e122374-527a-420b-80a1-e97774224f7a)
