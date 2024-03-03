@@ -32,17 +32,16 @@
 
 <br>
 
+![image](https://github.com/AbhishekDevJr/Project-ExclusiveAccess/assets/101062487/662932e0-5a0d-405c-8ee6-c640ed8f268b)
+
+<br>
+
 ![image](https://github.com/AbhishekDevJr/Project-ExclusiveAccess/assets/101062487/9fc13c12-9aa4-4640-affe-9551cecad5a9)
 
 
 <br>
 
 ![image](https://github.com/AbhishekDevJr/Project-ExclusiveAccess/assets/101062487/74aa3e6b-bc91-40ed-8b53-a9659aa099aa)
-
-
-<br>
-
-![image](https://github.com/AbhishekDevJr/Project-ExclusiveAccess/assets/101062487/662932e0-5a0d-405c-8ee6-c640ed8f268b)
 
 
 <br>
