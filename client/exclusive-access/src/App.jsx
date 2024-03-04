@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import './App.css';
+import './App.scss';
 import SignUp from './component/SignUp/SignUp';
 import ExclusiveAccess from './component/ExclusiveAccess/ExclusiveAccess';
 import SignIn from './component/SignIn/SignIn';
