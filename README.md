@@ -2,6 +2,8 @@
 
 <h1><a href = "https://exclusiveaccess.netlify.app/" target "_blank">Live Demo</a></h1>
 
+Note: Render places Back-End Server into sleep mode after 45 minutes of In-Activity, so it may take 2-3 minutes for the first request to be processed, but subsequent requests will be executed quickly.
+
 <p>This repository holds the Codebase for Exclusive Access Project. This is a full-stack project built using Technologies/Frameworks primarily revolving around MERN Stack.</p>
 
 <h2>List of Technologies, Frameworks & Libraries used.</h2>
