@@ -2,6 +2,8 @@
 
 <h1><a href = "https://exclusiveaccess.netlify.app/" target "_blank">Live Demo</a></h1>
 
+Note: Render puts the Back-End Server into sleep mode after 45 minutes of inactivity, so it may take 2-3 minutes for the first request to be processed. However, subsequent requests will be executed quickly.
+
 <p>This repository holds the Codebase for Exclusive Access Project. This is a full-stack project built using Technologies/Frameworks primarily revolving around MERN Stack.</p>
 
 <h2>List of Technologies, Frameworks & Libraries used.</h2>
@@ -26,3 +28,25 @@
         <li><strong>RESTful API:</strong>Developed APIs to handle Incoming Network Requests from Front-End.</li>
         <li><strong>Dependency</strong> Yarn for managing various project dependencies.</li>
 </ul>
+
+![image](https://github.com/AbhishekDevJr/Project-ExclusiveAccess/assets/101062487/dda19ee1-0ad4-4019-a3ae-c1a7443b960e)
+
+
+<br>
+
+![image](https://github.com/AbhishekDevJr/Project-ExclusiveAccess/assets/101062487/662932e0-5a0d-405c-8ee6-c640ed8f268b)
+
+<br>
+
+![image](https://github.com/AbhishekDevJr/Project-ExclusiveAccess/assets/101062487/9fc13c12-9aa4-4640-affe-9551cecad5a9)
+
+
+<br>
+
+![image](https://github.com/AbhishekDevJr/Project-ExclusiveAccess/assets/101062487/74aa3e6b-bc91-40ed-8b53-a9659aa099aa)
+
+
+<br>
+
+![image](https://github.com/AbhishekDevJr/Project-ExclusiveAccess/assets/101062487/99b7ec8f-30ff-4b9a-9ef9-241c3bcf5594)
+
