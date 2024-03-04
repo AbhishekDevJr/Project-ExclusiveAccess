@@ -5,12 +5,14 @@ import signout from '../../assets/signout.png';
 function Header() {
     const navigate = useNavigate();
     const isSignedIn = localStorage.getItem('userAuth');
+    const firstname = localStorage.getItem('firstname');
 
     const handleSignOut = () => {
         localStorage.setItem('userAuth', '');
         localStorage.setItem('expTime', '');
         localStorage.setItem('signedInAt', '');
         localStorage.setItem('userNotified', '');
+        localStorage.setItem('firstname', '');
         navigate('/signin');
     };
 
@@ -21,12 +23,13 @@ function Header() {
             </div>
             <div className='nav-links'>
                 {isSignedIn ?
-                    <>
+                    <div className='user-info'>
+                        <h2><span>Welcome, </span>{firstname}!</h2>
                         <div className='container-signout' onClick={handleSignOut}>
                             <img src={signout} alt='' />
                             <span>SIGN OUT</span>
                         </div>
-                    </>
+                    </div>
                     :
                     <>
                         <Link to='/signup'>

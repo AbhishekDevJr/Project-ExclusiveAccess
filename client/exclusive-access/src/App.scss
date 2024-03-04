@@ -1,40 +1,92 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
+  font-family: "Open Sans", sans-serif;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Open sans";
+  min-height: 100vh;
+  background-color: #1d232a;
+  padding: 40px;
+
+  .ant-modal-content {
+    background-color: #15191e !important;
+    color: #a6adba;
     font-family: "Open Sans", sans-serif;
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    font-family: 'Open sans';
-    min-height: 100vh;
-    background-color: #1d232a;
-    padding: 40px;
 
-    .ant-modal-content {
-        background-color: #15191e !important;
-        color: #a6adba;
-        font-family: 'Open Sans', sans-serif;
-
-        .ant-modal-close-x {
-            svg {
-                fill: #fff;
-            }
-        }
-
-        .ant-modal-header {
-            color: #a6adba;
-            background-color: transparent;
-
-            .ant-modal-title {
-                font-family: 'Open Sans', sans-serif;
-                font-size: 24px;
-                color: #fff;
-                text-align: center;
-            }
-        }
+    .ant-modal-close-x {
+      svg {
+        fill: #fff;
+      }
     }
+
+    .ant-modal-header {
+      color: #a6adba;
+      background-color: transparent;
+
+      .ant-modal-title {
+        font-family: "Open Sans", sans-serif;
+        font-size: 24px;
+        color: #fff;
+        text-align: center;
+      }
+    }
+
+    .ant-modal-body {
+      color: #a6adba;
+      form {
+        color: #fff;
+        font-size: 12px;
+        font-family: "Open Sans", sans-serif;
+
+        label {
+          color: #fff !important;
+          font-family: "Open Sans", sans-serif;
+        }
+        input,
+        textarea {
+          background: transparent;
+          color: #fff;
+        }
+
+        input:hover,
+        textarea:hover {
+          background: transparent;
+          color: #fff;
+        }
+
+        input:focus,
+        textarea:focus {
+          background: transparent;
+          color: #fff;
+        }
+
+        h1 {
+          font-weight: 400;
+        }
+      }
+    }
+  }
+}
+
+.ant-modal-footer {
+  display: flex;
+  justify-content: center;
+  button {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
+  }
+
+  button:last-child {
+    background-color: #6419e6;
+  }
+
+  button:last-child:hover{
+    background: #6419e6 !important;
+  }
 }

@@ -14,70 +14,68 @@ function Home() {
     const [editModalData, setEditModalData] = useState({});
     const [form] = Form.useForm();
 
-    const dummyData = [
-        {
-            title: "Lorem Ipsum 1",
-            description: "This is a dummy description for the first object.",
-            author: "John Doe",
-            time_stamp: "2024-02-24",
-        },
-        {
-            title: "Lorem Ipsum 2",
-            description: "Another dummy description for the second object.",
-            author: "Jane Smith",
-            time_stamp: "2024-02-25",
-        },
-        {
-            title: "Lorem Ipsum 3",
-            description: "Yet another dummy description for the third object.",
-            author: "Bob Johnson",
-            time_stamp: "2024-02-26",
-        },
-        {
-            title: "Lorem Ipsum 4",
-            description: "Description for the fourth object.",
-            author: "Alice Brown",
-            time_stamp: "2024-02-27",
-        },
-        {
-            title: "Lorem Ipsum 5",
-            description: "Description for the fifth object.",
-            author: "Charlie Wilson",
-            time_stamp: "2024-02-28",
-        },
-        {
-            title: "Lorem Ipsum 6",
-            description: "Description for the sixth object.",
-            author: "Eva Davis",
-            time_stamp: "2024-02-29",
-        },
-        {
-            title: "Lorem Ipsum 7",
-            description: "Description for the seventh object.",
-            author: "Frank Miller",
-            time_stamp: "2024-03-01",
-        },
-        {
-            title: "Lorem Ipsum 8",
-            description: "Description for the eighth object.",
-            author: "Grace Lee",
-            time_stamp: "2024-03-02",
-        },
-        {
-            title: "Lorem Ipsum 9",
-            description: "Description for the ninth object.",
-            author: "Harry Turner",
-            time_stamp: "2024-03-03",
-        },
-        {
-            title: "Lorem Ipsum 10",
-            description: "Description for the tenth object.",
-            author: "Ivy Perez",
-            time_stamp: "2024-03-04",
-        },
-    ];
-
-    console.log(dummyData);
+    // const dummyData = [
+    //     {
+    //         title: "Lorem Ipsum 1",
+    //         description: "This is a dummy description for the first object.",
+    //         author: "John Doe",
+    //         time_stamp: "2024-02-24",
+    //     },
+    //     {
+    //         title: "Lorem Ipsum 2",
+    //         description: "Another dummy description for the second object.",
+    //         author: "Jane Smith",
+    //         time_stamp: "2024-02-25",
+    //     },
+    //     {
+    //         title: "Lorem Ipsum 3",
+    //         description: "Yet another dummy description for the third object.",
+    //         author: "Bob Johnson",
+    //         time_stamp: "2024-02-26",
+    //     },
+    //     {
+    //         title: "Lorem Ipsum 4",
+    //         description: "Description for the fourth object.",
+    //         author: "Alice Brown",
+    //         time_stamp: "2024-02-27",
+    //     },
+    //     {
+    //         title: "Lorem Ipsum 5",
+    //         description: "Description for the fifth object.",
+    //         author: "Charlie Wilson",
+    //         time_stamp: "2024-02-28",
+    //     },
+    //     {
+    //         title: "Lorem Ipsum 6",
+    //         description: "Description for the sixth object.",
+    //         author: "Eva Davis",
+    //         time_stamp: "2024-02-29",
+    //     },
+    //     {
+    //         title: "Lorem Ipsum 7",
+    //         description: "Description for the seventh object.",
+    //         author: "Frank Miller",
+    //         time_stamp: "2024-03-01",
+    //     },
+    //     {
+    //         title: "Lorem Ipsum 8",
+    //         description: "Description for the eighth object.",
+    //         author: "Grace Lee",
+    //         time_stamp: "2024-03-02",
+    //     },
+    //     {
+    //         title: "Lorem Ipsum 9",
+    //         description: "Description for the ninth object.",
+    //         author: "Harry Turner",
+    //         time_stamp: "2024-03-03",
+    //     },
+    //     {
+    //         title: "Lorem Ipsum 10",
+    //         description: "Description for the tenth object.",
+    //         author: "Ivy Perez",
+    //         time_stamp: "2024-03-04",
+    //     },
+    // ];
 
 
     const getPostsApi = async () => {
@@ -102,13 +100,19 @@ function Home() {
     };
 
     const handleEdit = (index) => {
-        console.log(dummyData[index]);
-        setEditModalData(dummyData[index]);
+        console.log(allPosts[index]);
+        setEditModalData(allPosts[index]);
+        form.setFieldsValue(allPosts[index]);
         setIsModalOpen(true);
     }
 
+    const handleEditClose = () => {
+        setEditModalData({});
+        setIsModalOpen(false);
+    }
+
     useEffect(() => {
-        // getPostsApi();
+        getPostsApi();
 
         if (isSignedIn && !localStorage.getItem('userNotified')) {
             toast.success(`Successfully Signed In!`, {
@@ -139,8 +143,8 @@ function Home() {
 
                 {isSignedIn ?
                     <div className='container-posts'>
-                        {dummyData.length ?
-                            dummyData.map((item, index) => <div key={index} className="post-box">
+                        {allPosts.length ?
+                            allPosts.map((item, index) => <div key={index} className="post-box">
                                 <div className='post-info'>
                                     <p>Title : {item.title}</p>
                                     <p>Description : {item.description}</p>
@@ -163,8 +167,8 @@ function Home() {
                     </div>
                     :
                     <div className='container-posts'>
-                        {dummyData.length ?
-                            dummyData.map((item, index) => <div key={index} className="post-box-nonSignIn">
+                        {allPosts.length ?
+                            allPosts.map((item, index) => <div key={index} className="post-box-nonSignIn">
                                 <p>Title : {item.title}</p>
                                 <p>Description : {item.description}</p>
                                 <p>Author : {item.author}</p>
@@ -187,25 +191,22 @@ function Home() {
                 />
 
                 <Modal
-                    title="Edit Modal"
+                    title="Edit Post"
                     centered
                     open={isModalOpen}
                     onOk={() => setIsModalOpen(false)}
-                    onCancel={() => setIsModalOpen(false)}
+                    onCancel={handleEditClose}
                     okText={'Submit'}
                 >
                     <Form
                         name="basic"
-                        initialValues={{
-                            remember: true,
-                        }}
+                        // initialValues={editModalData}
                         // onFinish={onFinish}
                         // onFinishFailed={onFinishFailed}
                         autoComplete="off"
                         form={form}
+                        layout="vertical"
                     >
-
-                        <h1>Add Post</h1>
 
                         <div className='group-post-inputs'>
                             <Form.Item

@@ -30,6 +30,7 @@ function SignIn() {
                 localStorage.setItem('userAuth', userRes.token);
                 localStorage.setItem('expTime', userRes.expTime);
                 localStorage.setItem('signedInAt', moment());
+                localStorage.setItem('firstname', userRes.name);
 
                 toast.success(`${userRes.message}`, {
                     position: "top-center",

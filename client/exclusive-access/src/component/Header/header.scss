@@ -20,7 +20,7 @@
   }
 
   h2:hover {
-    background-color: #383F47;
+    background-color: #383f47;
     transition: 0.2s;
     cursor: pointer;
   }
@@ -30,6 +30,24 @@
     align-items: center;
     gap: 50px;
     font-weight: 600;
+
+    .user-info {
+      display: flex;
+
+      h2 {
+        color: #a6adba;
+        font-size: 20px;
+
+        span {
+          color: #6419e6;
+        }
+      }
+
+      h2:hover {
+        background-color: transparent;
+        cursor: text;
+      }
+    }
 
     a {
       padding: 10px;
@@ -43,7 +61,7 @@
     }
 
     a:hover {
-      background-color: #383F47;
+      background-color: #383f47;
       cursor: pointer;
       transition: 0.2s;
     }
@@ -62,15 +80,14 @@
         color: #a6adba;
       }
 
-
       img {
         height: auto;
         max-width: 20px;
       }
     }
 
-    .container-signout:hover{
-      background-color: #383F47;
+    .container-signout:hover {
+      background-color: #383f47;
       cursor: pointer;
       transition: 0.2s;
     }
