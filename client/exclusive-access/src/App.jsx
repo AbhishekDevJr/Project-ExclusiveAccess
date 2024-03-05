@@ -19,6 +19,9 @@ function App() {
       localStorage.setItem('userAuth', '');
       localStorage.setItem('expTime', '');
       localStorage.setItem('signedInAt', '');
+      localStorage.setItem('firstname', '');
+      localStorage.setItem('username', '');
+      localStorage.setItem('isExclusiveUser', '');
       window.location.href = '/';
     }
 

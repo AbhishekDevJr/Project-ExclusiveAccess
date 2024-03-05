@@ -81,7 +81,7 @@ exports.signin = asyncHandler(async (req, res, next) => {
                 username: req.body.username
             }, process.env.JWT_SECRET);
 
-            res.json({ token: token, resCode: 'Authenticated', message: `${req.body.username} successfully signed in.`, expTime: 3600000, name: userFind.firstName });
+            res.json({ token: token, resCode: 'Authenticated', message: `${req.body.username} successfully signed in.`, expTime: 3600000, name: userFind.firstName, username: req.body.username, isExclusiveUser: userFind.exclusiveAccess });
         }
         else {
             res.json({

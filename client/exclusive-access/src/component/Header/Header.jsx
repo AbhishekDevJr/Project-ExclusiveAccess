@@ -1,11 +1,12 @@
 import { Link, useNavigate } from 'react-router-dom'
 import './header.scss';
 import signout from '../../assets/signout.png';
+import { decryptData } from '../../HelperFunctions/cryptoUtils';
 
 function Header() {
     const navigate = useNavigate();
     const isSignedIn = localStorage.getItem('userAuth');
-    const firstname = localStorage.getItem('firstname');
+    const firstname = decryptData(localStorage.getItem('firstname'));
 
     const handleSignOut = () => {
         localStorage.setItem('userAuth', '');
@@ -13,6 +14,8 @@ function Header() {
         localStorage.setItem('signedInAt', '');
         localStorage.setItem('userNotified', '');
         localStorage.setItem('firstname', '');
+        localStorage.setItem('username', '');
+        localStorage.setItem('isExclusiveUser', '');
         navigate('/signin');
     };
 
