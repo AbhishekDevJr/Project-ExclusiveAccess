@@ -3,7 +3,7 @@ import './home.scss';
 import moment from 'moment';
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import { Form, Input, Modal, Spin } from 'antd';
+import { Form, Input, Modal, Popconfirm, Spin } from 'antd';
 // import { ReactComponent as EditSvg } from '../../assets/delete.svg';
 
 function Home() {
@@ -14,68 +14,68 @@ function Home() {
     const [editModalData, setEditModalData] = useState({});
     const [form] = Form.useForm();
 
-    // const dummyData = [
-    //     {
-    //         title: "Lorem Ipsum 1",
-    //         description: "This is a dummy description for the first object.",
-    //         author: "John Doe",
-    //         time_stamp: "2024-02-24",
-    //     },
-    //     {
-    //         title: "Lorem Ipsum 2",
-    //         description: "Another dummy description for the second object.",
-    //         author: "Jane Smith",
-    //         time_stamp: "2024-02-25",
-    //     },
-    //     {
-    //         title: "Lorem Ipsum 3",
-    //         description: "Yet another dummy description for the third object.",
-    //         author: "Bob Johnson",
-    //         time_stamp: "2024-02-26",
-    //     },
-    //     {
-    //         title: "Lorem Ipsum 4",
-    //         description: "Description for the fourth object.",
-    //         author: "Alice Brown",
-    //         time_stamp: "2024-02-27",
-    //     },
-    //     {
-    //         title: "Lorem Ipsum 5",
-    //         description: "Description for the fifth object.",
-    //         author: "Charlie Wilson",
-    //         time_stamp: "2024-02-28",
-    //     },
-    //     {
-    //         title: "Lorem Ipsum 6",
-    //         description: "Description for the sixth object.",
-    //         author: "Eva Davis",
-    //         time_stamp: "2024-02-29",
-    //     },
-    //     {
-    //         title: "Lorem Ipsum 7",
-    //         description: "Description for the seventh object.",
-    //         author: "Frank Miller",
-    //         time_stamp: "2024-03-01",
-    //     },
-    //     {
-    //         title: "Lorem Ipsum 8",
-    //         description: "Description for the eighth object.",
-    //         author: "Grace Lee",
-    //         time_stamp: "2024-03-02",
-    //     },
-    //     {
-    //         title: "Lorem Ipsum 9",
-    //         description: "Description for the ninth object.",
-    //         author: "Harry Turner",
-    //         time_stamp: "2024-03-03",
-    //     },
-    //     {
-    //         title: "Lorem Ipsum 10",
-    //         description: "Description for the tenth object.",
-    //         author: "Ivy Perez",
-    //         time_stamp: "2024-03-04",
-    //     },
-    // ];
+    const dummyData = [
+        {
+            title: "Lorem Ipsum 1",
+            description: "This is a dummy description for the first object.",
+            author: "John Doe",
+            time_stamp: "2024-02-24",
+        },
+        {
+            title: "Lorem Ipsum 2",
+            description: "Another dummy description for the second object.",
+            author: "Jane Smith",
+            time_stamp: "2024-02-25",
+        },
+        {
+            title: "Lorem Ipsum 3",
+            description: "Yet another dummy description for the third object.",
+            author: "Bob Johnson",
+            time_stamp: "2024-02-26",
+        },
+        {
+            title: "Lorem Ipsum 4",
+            description: "Description for the fourth object.",
+            author: "Alice Brown",
+            time_stamp: "2024-02-27",
+        },
+        {
+            title: "Lorem Ipsum 5",
+            description: "Description for the fifth object.",
+            author: "Charlie Wilson",
+            time_stamp: "2024-02-28",
+        },
+        {
+            title: "Lorem Ipsum 6",
+            description: "Description for the sixth object.",
+            author: "Eva Davis",
+            time_stamp: "2024-02-29",
+        },
+        {
+            title: "Lorem Ipsum 7",
+            description: "Description for the seventh object.",
+            author: "Frank Miller",
+            time_stamp: "2024-03-01",
+        },
+        {
+            title: "Lorem Ipsum 8",
+            description: "Description for the eighth object.",
+            author: "Grace Lee",
+            time_stamp: "2024-03-02",
+        },
+        {
+            title: "Lorem Ipsum 9",
+            description: "Description for the ninth object.",
+            author: "Harry Turner",
+            time_stamp: "2024-03-03",
+        },
+        {
+            title: "Lorem Ipsum 10",
+            description: "Description for the tenth object.",
+            author: "Ivy Perez",
+            time_stamp: "2024-03-04",
+        },
+    ];
 
 
     const getPostsApi = async () => {
@@ -101,8 +101,8 @@ function Home() {
 
     const handleEdit = (index) => {
         console.log(allPosts[index]);
-        setEditModalData(allPosts[index]);
-        form.setFieldsValue(allPosts[index]);
+        setEditModalData(dummyData[index]);
+        form.setFieldsValue(dummyData[index]);
         setIsModalOpen(true);
     }
 
@@ -111,24 +111,46 @@ function Home() {
         setIsModalOpen(false);
     }
 
-    useEffect(() => {
-        getPostsApi();
+    const handleEditSubmit = () => {
+        form.validateFields()
+            .then((values) => {
+                onFinish(values);
+                setIsModalOpen(false);
+            })
+            .catch((error) => {
+                alert(`Please enter valid data for following fields:- ${error.errorFields.map((item) => item.name[0]).join()}`);
+            })
+    }
 
-        if (isSignedIn && !localStorage.getItem('userNotified')) {
-            toast.success(`Successfully Signed In!`, {
-                position: "top-center",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-            });
+    const onFinish = (data) => {
+        setIsModalOpen(false);
+        //Call Edit API Here
+        console.log('form data---------->', data);
+    }
 
-            localStorage.setItem('userNotified', 'userNotified');
-        }
-    }, []);
+    const handleDelete = (index) => {
+        console.log('Delete Index------->', index);
+        //Call Delete API Here
+    }
+
+    // useEffect(() => {
+    //     getPostsApi();
+
+    //     if (isSignedIn && !localStorage.getItem('userNotified')) {
+    //         toast.success(`Successfully Signed In!`, {
+    //             position: "top-center",
+    //             autoClose: 3000,
+    //             hideProgressBar: false,
+    //             closeOnClick: true,
+    //             pauseOnHover: true,
+    //             draggable: true,
+    //             progress: undefined,
+    //             theme: "dark",
+    //         });
+
+    //         localStorage.setItem('userNotified', 'userNotified');
+    //     }
+    // }, []);
 
     return (
         <Spin tip="Fetching..." size="large" fullscreen={isLoading} spinning={isLoading}>
@@ -143,8 +165,8 @@ function Home() {
 
                 {isSignedIn ?
                     <div className='container-posts'>
-                        {allPosts.length ?
-                            allPosts.map((item, index) => <div key={index} className="post-box">
+                        {dummyData.length ?
+                            dummyData.map((item, index) => <div key={index} className="post-box">
                                 <div className='post-info'>
                                     <p>Title : {item.title}</p>
                                     <p>Description : {item.description}</p>
@@ -158,8 +180,17 @@ function Home() {
                                         <path d="M11 4H6C4.93913 4 3.92178 4.42142 3.17163 5.17157C2.42149 5.92172 2 6.93913 2 8V18C2 19.0609 2.42149 20.0783 3.17163 20.8284C3.92178 21.5786 4.93913 22 6 22H17C19.21 22 20 20.2 20 18V13" stroke="#A6ADBA" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                     </svg>
 
-                                    <svg onClick={() => alert('Action Buttons are under development.')} width="30px" height="30px" viewBox="0 0 1024 1024" className="icon" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M960 160h-291.2a160 160 0 0 0-313.6 0H64a32 32 0 0 0 0 64h896a32 32 0 0 0 0-64zM512 96a96 96 0 0 1 90.24 64h-180.48A96 96 0 0 1 512 96zM844.16 290.56a32 32 0 0 0-34.88 6.72A32 32 0 0 0 800 320a32 32 0 1 0 64 0 33.6 33.6 0 0 0-9.28-22.72 32 32 0 0 0-10.56-6.72zM832 416a32 32 0 0 0-32 32v96a32 32 0 0 0 64 0v-96a32 32 0 0 0-32-32zM832 640a32 32 0 0 0-32 32v224a32 32 0 0 1-32 32H256a32 32 0 0 1-32-32V320a32 32 0 0 0-64 0v576a96 96 0 0 0 96 96h512a96 96 0 0 0 96-96v-224a32 32 0 0 0-32-32z" /><path d="M384 768V352a32 32 0 0 0-64 0v416a32 32 0 0 0 64 0zM544 768V352a32 32 0 0 0-64 0v416a32 32 0 0 0 64 0zM704 768V352a32 32 0 0 0-64 0v416a32 32 0 0 0 64 0z" />
-                                    </svg>
+                                    <Popconfirm
+                                        title="Delete this Post"
+                                        description="Are you sure you want to delete this post?"
+                                        onConfirm={() => handleDelete(index)}
+                                        onCancel={() => { }}
+                                        okText="Delete"
+                                        cancelText="Cancel"
+                                    >
+                                        <svg width="30px" height="30px" viewBox="0 0 1024 1024" className="icon" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M960 160h-291.2a160 160 0 0 0-313.6 0H64a32 32 0 0 0 0 64h896a32 32 0 0 0 0-64zM512 96a96 96 0 0 1 90.24 64h-180.48A96 96 0 0 1 512 96zM844.16 290.56a32 32 0 0 0-34.88 6.72A32 32 0 0 0 800 320a32 32 0 1 0 64 0 33.6 33.6 0 0 0-9.28-22.72 32 32 0 0 0-10.56-6.72zM832 416a32 32 0 0 0-32 32v96a32 32 0 0 0 64 0v-96a32 32 0 0 0-32-32zM832 640a32 32 0 0 0-32 32v224a32 32 0 0 1-32 32H256a32 32 0 0 1-32-32V320a32 32 0 0 0-64 0v576a96 96 0 0 0 96 96h512a96 96 0 0 0 96-96v-224a32 32 0 0 0-32-32z" /><path d="M384 768V352a32 32 0 0 0-64 0v416a32 32 0 0 0 64 0zM544 768V352a32 32 0 0 0-64 0v416a32 32 0 0 0 64 0zM704 768V352a32 32 0 0 0-64 0v416a32 32 0 0 0 64 0z" />
+                                        </svg>
+                                    </Popconfirm>
                                 </div>
                             </div>)
                             :
@@ -167,8 +198,8 @@ function Home() {
                     </div>
                     :
                     <div className='container-posts'>
-                        {allPosts.length ?
-                            allPosts.map((item, index) => <div key={index} className="post-box-nonSignIn">
+                        {dummyData.length ?
+                            dummyData.map((item, index) => <div key={index} className="post-box-nonSignIn">
                                 <p>Title : {item.title}</p>
                                 <p>Description : {item.description}</p>
                                 <p>Author : {item.author}</p>
@@ -194,14 +225,14 @@ function Home() {
                     title="Edit Post"
                     centered
                     open={isModalOpen}
-                    onOk={() => setIsModalOpen(false)}
+                    onOk={handleEditSubmit}
                     onCancel={handleEditClose}
                     okText={'Submit'}
                 >
                     <Form
                         name="basic"
                         // initialValues={editModalData}
-                        // onFinish={onFinish}
+                        onFinish={onFinish}
                         // onFinishFailed={onFinishFailed}
                         autoComplete="off"
                         form={form}
