@@ -125,9 +125,9 @@ function Home() {
     };
 
     const handleEdit = (index) => {
-        console.log(dummyData[index]);
-        setEditModalData(dummyData[index]);
-        form.setFieldsValue(dummyData[index]);
+        console.log(allPosts[index]);
+        setEditModalData(allPosts[index]);
+        form.setFieldsValue(allPosts[index]);
         setIsModalOpen(true);
     }
 
@@ -147,10 +147,29 @@ function Home() {
             })
     }
 
-    const onFinish = (data) => {
+    const onFinish = async (data) => {
         setIsModalOpen(false);
         //Call Edit API Here
-        console.log('form data---------->', data);
+        console.log('form data---------->', data, editModalData);
+        try {
+            setIsLoading(true);
+            const allUpdatedPosts = await fetch('http://localhost:5000/post/edit', {
+                method: 'POST',
+                body: JSON.stringify({ ...data, updatedAt: moment(), _id: editModalData._id }),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                },
+            });
+
+            const allPostsRes = await allUpdatedPosts.json();
+            console.log('Updated Posts------>', allPostsRes.updatedPosts.reverse());
+            setAllPosts(allPostsRes.updatedPosts.reverse());
+            setIsLoading(false);
+
+        } catch (e) {
+            setIsLoading(false);
+            console.log(e);
+        }
     }
 
     const handleDelete = (index) => {
@@ -158,24 +177,24 @@ function Home() {
         //Call Delete API Here
     }
 
-    // useEffect(() => {
-    //     getPostsApi();
+    useEffect(() => {
+        getPostsApi();
 
-    //     if (isSignedIn && !localStorage.getItem('userNotified')) {
-    //         toast.success(`Successfully Signed In!`, {
-    //             position: "top-center",
-    //             autoClose: 3000,
-    //             hideProgressBar: false,
-    //             closeOnClick: true,
-    //             pauseOnHover: true,
-    //             draggable: true,
-    //             progress: undefined,
-    //             theme: "dark",
-    //         });
+        if (isSignedIn && !localStorage.getItem('userNotified')) {
+            toast.success(`Successfully Signed In!`, {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
 
-    //         localStorage.setItem('userNotified', 'userNotified');
-    //     }
-    // }, []);
+            localStorage.setItem('userNotified', 'userNotified');
+        }
+    }, []);
 
     return (
         <Spin tip="Fetching..." size="large" fullscreen={isLoading} spinning={isLoading}>
@@ -190,8 +209,8 @@ function Home() {
 
                 {isSignedIn ?
                     <div className='container-posts'>
-                        {dummyData.length ?
-                            dummyData.map((item, index) => <div key={index} className="post-box">
+                        {allPosts.length ?
+                            allPosts.map((item, index) => <div key={index} className="post-box">
                                 <div className='post-info'>
                                     <p>Title : {item.title}</p>
                                     <p>Description : {item.description}</p>
@@ -212,8 +231,8 @@ function Home() {
                     </div>
                     :
                     <div className='container-posts'>
-                        {dummyData.length ?
-                            dummyData.map((item, index) => <div key={index} className="post-box-nonSignIn">
+                        {allPosts.length ?
+                            allPosts.map((item, index) => <div key={index} className="post-box-nonSignIn">
                                 <p>Title : {item.title}</p>
                                 <p>Description : {item.description}</p>
                                 <p>Author : {item.author}</p>
