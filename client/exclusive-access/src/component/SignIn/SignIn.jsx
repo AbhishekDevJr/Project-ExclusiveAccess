@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import { useState } from "react";
+import { encryptData } from "../../HelperFunctions/cryptoUtils";
 
 function SignIn() {
     const [form] = Form.useForm();
@@ -30,7 +31,9 @@ function SignIn() {
                 localStorage.setItem('userAuth', userRes.token);
                 localStorage.setItem('expTime', userRes.expTime);
                 localStorage.setItem('signedInAt', moment());
-                localStorage.setItem('firstname', userRes.name);
+                localStorage.setItem('firstname', encryptData(userRes.name));
+                localStorage.setItem('username', encryptData(userRes.username));
+                localStorage.setItem('isExclusiveUser', userRes.isExclusiveUser ? encryptData(userRes.isExclusiveUser) : '');
 
                 toast.success(`${userRes.message}`, {
                     position: "top-center",

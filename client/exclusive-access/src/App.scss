@@ -39,6 +39,7 @@ body {
 
     .ant-modal-body {
       color: #a6adba;
+
       form {
         color: #fff;
         font-size: 12px;
@@ -48,6 +49,7 @@ body {
           color: #fff !important;
           font-family: "Open Sans", sans-serif;
         }
+
         input,
         textarea {
           background: transparent;
@@ -77,6 +79,7 @@ body {
 .ant-modal-footer {
   display: flex;
   justify-content: center;
+
   button {
     font-family: "Open Sans", sans-serif;
     font-weight: 600;
@@ -86,7 +89,35 @@ body {
     background-color: #6419e6;
   }
 
-  button:last-child:hover{
+  button:last-child:hover {
     background: #6419e6 !important;
+  }
+}
+
+.ant-popover {
+  .ant-popover-content {
+    .ant-popover-inner {
+      background: #1D232A !important;
+
+      div {
+        color: #fff;
+        font-family: "Open Sans", sans-serif;
+      }
+    }
+  }
+
+  .ant-popconfirm-buttons {
+    button {
+      font-family: "Open Sans", sans-serif;
+      font-weight: 600;
+    }
+
+    button:last-child {
+      background-color: #6419E6;
+    }
+
+    button:last-child:hover {
+      background-color: #6419E6;
+    }
   }
 }

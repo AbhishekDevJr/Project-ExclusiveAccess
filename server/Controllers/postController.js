@@ -3,6 +3,7 @@ const asyncHandler = require('express-async-handler');
 const postModel = require('../Models/post');
 const userModel = require('../Models/user');
 const jwt = require('jsonwebtoken');
+const { ObjectId } = require('mongodb');
 
 exports.posts = asyncHandler(async (req, res, next) => {
 
@@ -36,6 +37,72 @@ exports.posts = asyncHandler(async (req, res, next) => {
         res.status(400).json({
             resCode: 'badRequest',
             message: 'Bad Request Payload',
+        });
+    }
+});
+
+exports.edit = asyncHandler(async (req, res, next) => {
+    if (req.body.title && req.body.description && req.body._id) {
+        const updatesPost = await postModel.findOneAndUpdate({ _id: new ObjectId(String(req.body._id)) },
+            {
+                $set: {
+                    title: req.body.title,
+                    description: req.body.description,
+                    updatedAt: req.body.updatedAt
+                }
+            },
+            {
+                returnDocument: 'after',
+            });
+
+        if (updatesPost) {
+            const allPost = await postModel.find();
+
+            res.json({
+                resCode: 'postUpdated',
+                message: 'Post Updated Successfully.',
+                updatedPosts: allPost,
+            });
+        }
+        else {
+            res.json({
+                resCode: 'postNotUpdated',
+                message: 'Something unhandled happened on the server.'
+            });
+        }
+    }
+    else {
+        res.json({
+            resCode: 'badRequest',
+            message: 'Bad Request Payload'
+        });
+    }
+});
+
+exports.delete = asyncHandler(async (req, res, next) => {
+    if (req.body._id) {
+        const deletePost = await postModel.findOneAndDelete({ _id: new ObjectId(String(req.body._id)) });
+
+        if (deletePost) {
+            const allPosts = await postModel.find();
+
+            res.json({
+                resCode: 'postDeleted',
+                message: 'Post Deleted Successfully.',
+                updatedPosts: allPosts,
+            });
+        }
+        else {
+            res.json({
+                resCode: 'postNotDeleted',
+                message: 'Something unhandled happened on the server.'
+            });
+        }
+    }
+    else {
+        res.json({
+            resCode: 'badRequest',
+            message: 'Bad Request Payload'
         });
     }
 });
