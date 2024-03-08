@@ -153,7 +153,7 @@ function Home() {
         console.log('form data---------->', data, editModalData);
         try {
             setIsLoading(true);
-            const allUpdatedPosts = await fetch('http://localhost:5000/post/edit', {
+            const allUpdatedPosts = await fetch('https://project-exclusiveaccess.onrender.com/post/edit', {
                 method: 'POST',
                 body: JSON.stringify({ ...data, updatedAt: moment(), _id: editModalData._id }),
                 headers: {
@@ -176,7 +176,7 @@ function Home() {
 
         try {
             setIsLoading(true);
-            const allUpdatedPosts = await fetch('http://localhost:5000/post/delete', {
+            const allUpdatedPosts = await fetch('https://project-exclusiveaccess.onrender.com/post/delete', {
                 method: 'POST',
                 body: JSON.stringify({ _id: allPosts[index]._id }),
                 headers: {
