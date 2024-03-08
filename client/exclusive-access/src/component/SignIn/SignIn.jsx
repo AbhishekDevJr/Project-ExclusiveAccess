@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import { useState } from "react";
-import { encryptData, decryptData } from "../../HelperFunctions/cryptoUtils";
+import { encryptData } from "../../HelperFunctions/cryptoUtils";
 
 function SignIn() {
     const [form] = Form.useForm();
