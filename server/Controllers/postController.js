@@ -43,7 +43,7 @@ exports.posts = asyncHandler(async (req, res, next) => {
 
 exports.edit = asyncHandler(async (req, res, next) => {
     if (req.body.title && req.body.description && req.body._id) {
-        const updatesPost = await postModel.findOneAndDelete({ _id: new ObjectId(String(req.body._id)) },
+        const updatesPost = await postModel.findOneAndUpdate({ _id: new ObjectId(String(req.body._id)) },
             {
                 $set: {
                     title: req.body.title,
@@ -67,6 +67,34 @@ exports.edit = asyncHandler(async (req, res, next) => {
         else {
             res.json({
                 resCode: 'postNotUpdated',
+                message: 'Something unhandled happened on the server.'
+            });
+        }
+    }
+    else {
+        res.json({
+            resCode: 'badRequest',
+            message: 'Bad Request Payload'
+        });
+    }
+});
+
+exports.delete = asyncHandler(async (req, res, next) => {
+    if (req.body._id) {
+        const deletePost = await postModel.findOneAndDelete({ _id: new ObjectId(String(req.body._id)) });
+
+        if (deletePost) {
+            const allPosts = await postModel.find();
+
+            res.json({
+                resCode: 'postDeleted',
+                message: 'Post Deleted Successfully.',
+                updatedPosts: allPosts,
+            });
+        }
+        else {
+            res.json({
+                resCode: 'postNotDeleted',
                 message: 'Something unhandled happened on the server.'
             });
         }

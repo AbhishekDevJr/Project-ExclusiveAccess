@@ -33,7 +33,7 @@ function SignIn() {
                 localStorage.setItem('signedInAt', moment());
                 localStorage.setItem('firstname', encryptData(userRes.name));
                 localStorage.setItem('username', encryptData(userRes.username));
-                localStorage.setItem('isExclusiveUser', encryptData(userRes.isExclusiveUser));
+                localStorage.setItem('isExclusiveUser', userRes.isExclusiveUser ? encryptData(userRes.isExclusiveUser) : '');
 
                 toast.success(`${userRes.message}`, {
                     position: "top-center",

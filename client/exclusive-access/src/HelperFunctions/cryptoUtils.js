@@ -1,5 +1,4 @@
 import CryptoJS from 'crypto-js';
-import { isObject } from 'lodash';
 
 const secretKey = 'mySecretKey';
 

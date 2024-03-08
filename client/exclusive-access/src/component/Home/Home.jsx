@@ -162,7 +162,6 @@ function Home() {
             });
 
             const allPostsRes = await allUpdatedPosts.json();
-            console.log('Updated Posts------>', allPostsRes.updatedPosts.reverse());
             setAllPosts(allPostsRes.updatedPosts.reverse());
             setIsLoading(false);
 
@@ -172,9 +171,26 @@ function Home() {
         }
     }
 
-    const handleDelete = (index) => {
-        console.log('Delete Index------->', index);
+    const handleDelete = async (index) => {
         //Call Delete API Here
+
+        try {
+            setIsLoading(true);
+            const allUpdatedPosts = await fetch('http://localhost:5000/post/delete', {
+                method: 'POST',
+                body: JSON.stringify({ _id: allPosts[index]._id }),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                }
+            });
+
+            const allUpdatedPostsRes = await allUpdatedPosts.json();
+            setAllPosts(allUpdatedPostsRes.updatedPosts.reverse());
+            setIsLoading(false);
+        } catch (e) {
+            console.log(e);
+            setIsLoading(false);
+        }
     }
 
     useEffect(() => {
@@ -218,7 +234,7 @@ function Home() {
                                     <p>Created At : {moment(item.time_stamp).format('HH:mm, DD/MM/YYYY')}</p>
                                 </div>
 
-                                {(true) ?
+                                {(isExclusiveUser) ?
                                     getPostActions(index)
                                     :
                                     (signedInUser === item.author) ?
