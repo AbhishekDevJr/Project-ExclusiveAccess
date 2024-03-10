@@ -20,13 +20,13 @@ Note: Render places the Back-End Server into sleep mode after 45 minutes of inac
 
 <h2>Features Implemented</h2>
 <ul>
-        <li><strong>User Registration:</strong> Handling User Registration using SignUP Rest API, validating & storing user to the DataBase.</li>
-        <li><strong>User Authentication:</strong> Handlign User Authentication using SignIN API, Generating Token & Expiration to handle SignedIN user's session</li>
-        <li><strong>UI:</strong>Built UI using ReactJS, Sass, Antd Component</li>
-        <li><strong>Routing:</strong>Handled Routing using React-Router-Dom</li>
-        <li><strong>Database Integration:</strong> Using Mongoose & MongoDB to handle interactions of Back-End with DB & Store Data.</li>
-        <li><strong>RESTful API:</strong>Developed APIs to handle Incoming Network Requests from Front-End.</li>
-        <li><strong>Dependency</strong> Yarn for managing various project dependencies.</li>
+        <li><strong>User Registration: </strong>Handling User Registration using SignUP Rest API, validating & storing user to the DataBase.</li>
+        <li><strong>User Authentication: </strong>Handlign User Authentication using SignIN API, Generating Token & Expiration to handle SignedIN user's session</li>
+        <li><strong>UI: </strong>Built UI using ReactJS, Sass, Antd Component</li>
+        <li><strong>Routing: </strong>Handled Routing using React-Router-Dom</li>
+        <li><strong>Database Integration: </strong>Using Mongoose & MongoDB to handle interactions of Back-End with DB & Store Data.</li>
+        <li><strong>RESTful API: </strong>Developed APIs to handle Incoming Network Requests from Front-End.</li>
+        <li><strong>Dependency: </strong>Yarn for managing various project dependencies.</li>
 </ul>
 
 ![image](https://github.com/AbhishekDevJr/Project-ExclusiveAccess/assets/101062487/dda19ee1-0ad4-4019-a3ae-c1a7443b960e)
@@ -50,3 +50,6 @@ Note: Render places the Back-End Server into sleep mode after 45 minutes of inac
 
 ![image](https://github.com/AbhishekDevJr/Project-ExclusiveAccess/assets/101062487/99b7ec8f-30ff-4b9a-9ef9-241c3bcf5594)
 
+<br>
+
+![image](https://github.com/AbhishekDevJr/Project-ExclusiveAccess/assets/101062487/5856c977-7b40-47df-98c3-d4133b1af508)
