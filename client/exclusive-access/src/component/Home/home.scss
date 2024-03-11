@@ -108,3 +108,49 @@
     }
   }
 }
+
+@media screen and (max-width: 685px) {
+  .container-home {
+    h1 {
+      font-size: 40px;
+    }
+
+    .general-info {
+      p {
+        font-size: 20px;
+      }
+    }
+
+    .container-posts {
+      .post-box {
+        min-width: 280px;
+        max-width: 400px;
+
+        .post-info {
+          #btn-addPost {
+            white-space: nowrap;
+          }
+          p {
+            font-size: 14px;
+          }
+        }
+
+        .post-actionBtns {
+          svg {
+            height: auto;
+            width: 20px;
+          }
+        }
+      }
+
+      .post-box-nonSignIn {
+        min-width: 280px;
+        max-width: 400px;
+
+        p {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}

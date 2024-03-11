@@ -86,3 +86,30 @@
     }
   }
 }
+
+@media screen and (max-width: 580px) {
+  .container-signin {
+    h1 {
+      font-size: 24px;
+      text-align: center;
+    }
+
+    .group-signin-inputs {
+      gap: 30px;
+
+      .ant-form-item{
+        max-height: 50px;
+      }
+    }
+
+
+    #basic_username {
+      min-width: 250px;
+
+    }
+
+    #basic_password {
+      min-width: 210px;
+    }
+  }
+}

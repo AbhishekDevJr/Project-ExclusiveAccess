@@ -173,3 +173,52 @@
     }
   }
 }
+
+@media screen and (max-width: 600px) {
+  .container-singup {
+    .container-signup-form {
+
+      h1{
+        font-size: 26px;
+        text-align: center;
+      }
+
+      .group-input-names {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+
+        .ant-form-item{
+          max-height: 40px;
+        }
+      }
+
+      .group-input-email {
+        margin: 0 auto;
+        margin-bottom: 20px;
+
+        .ant-form-item{
+          max-height: 40px;
+        }
+
+        #basic_email {
+          min-width: 260px;
+        }
+
+        input {
+          max-width: 50px;
+          min-width: 0;
+        }
+      }
+
+      .group-input-password {
+        flex-direction: column;
+        align-items: center;
+
+        .ant-form-item{
+          max-height: 40px;
+        }
+      }
+    }
+  }
+}
