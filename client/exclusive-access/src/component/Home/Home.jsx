@@ -62,7 +62,6 @@ function Home() {
     };
 
     const handleEdit = (index) => {
-        console.log(allPosts[index]);
         setEditModalData(allPosts[index]);
         form.setFieldsValue(allPosts[index]);
         setIsModalOpen(true);
@@ -87,7 +86,6 @@ function Home() {
     const onFinish = async (data) => {
         setIsModalOpen(false);
         //Call Edit API Here
-        console.log('form data---------->', data, editModalData);
         try {
             setIsLoading(true);
             const allUpdatedPosts = await fetch('https://project-exclusiveaccess.onrender.com/post/edit', {
