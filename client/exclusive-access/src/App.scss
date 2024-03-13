@@ -97,7 +97,7 @@ body {
 .ant-popover {
   .ant-popover-content {
     .ant-popover-inner {
-      background: #1D232A !important;
+      background: #1d232a !important;
 
       div {
         color: #fff;
@@ -113,11 +113,15 @@ body {
     }
 
     button:last-child {
-      background-color: #6419E6;
+      background-color: #6419e6;
     }
 
     button:last-child:hover {
-      background-color: #6419E6;
+      background-color: #6419e6;
     }
   }
+}
+
+.Toastify__toast {
+  z-index: 100;
 }

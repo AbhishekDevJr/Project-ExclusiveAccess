@@ -80,79 +80,81 @@ function AddPost() {
     }
 
     return (
-        <Spin tip="Fetching..." size="large" fullscreen={isLoading} spinning={isLoading}>
-            <div className='container-add-post'>
-                <Form
-                    name="basic"
-                    initialValues={{
-                        remember: true,
-                    }}
-                    onFinish={onFinish}
-                    onFinishFailed={onFinishFailed}
-                    autoComplete="off"
-                    form={form}
-                >
+        <>
+            <Spin tip="Fetching..." size="large" fullscreen={isLoading} spinning={isLoading}>
+                <div className='container-add-post'>
+                    <Form
+                        name="basic"
+                        initialValues={{
+                            remember: true,
+                        }}
+                        onFinish={onFinish}
+                        onFinishFailed={onFinishFailed}
+                        autoComplete="off"
+                        form={form}
+                    >
 
-                    <h1>Add Post</h1>
+                        <h1>Add Post</h1>
 
-                    <div className='group-post-inputs'>
-                        <Form.Item
-                            label="Title"
-                            name="title"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'Please input a valid Title!',
-                                    pattern: /(?!^$)([^\s])/
-                                },
-                            ]}
-                        >
-                            <Input />
-                        </Form.Item>
+                        <div className='group-post-inputs'>
+                            <Form.Item
+                                label="Title"
+                                name="title"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please input a valid Title!',
+                                        pattern: /(?!^$)([^\s])/
+                                    },
+                                ]}
+                            >
+                                <Input />
+                            </Form.Item>
 
-                        <Form.Item
-                            label="Description"
-                            name="description"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'Please input a valid Description!',
-                                    pattern: /(?!^$)([^\s])/
-                                },
-                            ]}
-                        >
-                            <Input.TextArea classNames='input-passwords' autoSize={true} />
-                        </Form.Item>
-                    </div>
+                            <Form.Item
+                                label="Description"
+                                name="description"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please input a valid Description!',
+                                        pattern: /(?!^$)([^\s])/
+                                    },
+                                ]}
+                            >
+                                <Input.TextArea classNames='input-passwords' autoSize={true} />
+                            </Form.Item>
+                        </div>
 
-                    <div className='group-btn'>
-                        <Form.Item
-                            wrapperCol={{
-                                offset: 8,
-                                span: 16,
-                            }}
-                        >
-                            <Button type="primary" htmlType="submit">
-                                POST
-                            </Button>
-                        </Form.Item>
-                    </div>
-                </Form>
-                <ToastContainer
-                    position="top-center"
-                    autoClose={3000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    // pauseOnHover
-                    theme="dark"
-                // transition: Bounce
-                />
-            </div>
-        </Spin>
+                        <div className='group-btn'>
+                            <Form.Item
+                                wrapperCol={{
+                                    offset: 8,
+                                    span: 16,
+                                }}
+                            >
+                                <Button type="primary" htmlType="submit">
+                                    POST
+                                </Button>
+                            </Form.Item>
+                        </div>
+                    </Form>
+                </div>
+            </Spin>
+            <ToastContainer
+                position="top-center"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                // pauseOnHover
+                theme="dark"
+            // transition: Bounce
+            />
+        </>
     )
 }
 

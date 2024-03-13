@@ -90,82 +90,82 @@ function ExclusiveAccess() {
     };
 
     return (
-        <Spin tip="Fetching..." size="large" fullscreen={isLoading} spinning={isLoading}>
-            <div className='container-exclusiveAccess'>
-                <Form
-                    name="basic"
-                    initialValues={{
-                        remember: true,
-                    }}
-                    onFinish={onFinish}
-                    onFinishFailed={onFinishFailed}
-                    autoComplete="off"
+        <>
+            <Spin tip="Fetching..." size="large" fullscreen={isLoading} spinning={isLoading}>
+                <div className='container-exclusiveAccess'>
+                    <Form
+                        name="basic"
+                        initialValues={{
+                            remember: true,
+                        }}
+                        onFinish={onFinish}
+                        onFinishFailed={onFinishFailed}
+                        autoComplete="off"
 
-                    form={form}
-                >
+                        form={form}
+                    >
 
-                    <h1>Get Exclusive Access</h1>
+                        <h1>Get Exclusive Access</h1>
 
-                    <div className='group-input-exclusive'>
-                        <Form.Item
-                            label="Username"
-                            name="username"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'Please input a valid Username!',
-                                    pattern: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
-                                },
-                            ]}
-                        >
-                            <Input />
-                        </Form.Item>
+                        <div className='group-input-exclusive'>
+                            <Form.Item
+                                label="Username"
+                                name="username"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please input a valid Username!',
+                                        pattern: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
+                                    },
+                                ]}
+                            >
+                                <Input />
+                            </Form.Item>
 
-                        <Form.Item
-                            label="Exclusive Passcode"
-                            name="exclusivePasscode"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'Please input a valid Passcode!',
-                                    pattern: /^[A-Za-z]+$/
-                                },
-                            ]}
-                        >
-                            <Input />
-                        </Form.Item>
-                    </div>
+                            <Form.Item
+                                label="Exclusive Passcode"
+                                name="exclusivePasscode"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please input a valid Passcode!',
+                                        pattern: /^[A-Za-z]+$/
+                                    },
+                                ]}
+                            >
+                                <Input />
+                            </Form.Item>
+                        </div>
 
-                    <div className='group-btn'>
-                        <Form.Item
-                            wrapperCol={{
-                                offset: 8,
-                                span: 16,
-                            }}
-                        >
-                            <Button type="primary" htmlType="submit">
-                                Submit
-                            </Button>
-                        </Form.Item>
-                    </div>
-                </Form>
-
-                <ToastContainer
-                    position="top-center"
-                    autoClose={3000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    // pauseOnHover
-                    theme="dark"
-                // transition: Bounce
-                />
-
-            </div>
-        </Spin>
+                        <div className='group-btn'>
+                            <Form.Item
+                                wrapperCol={{
+                                    offset: 8,
+                                    span: 16,
+                                }}
+                            >
+                                <Button type="primary" htmlType="submit">
+                                    Submit
+                                </Button>
+                            </Form.Item>
+                        </div>
+                    </Form>
+                </div>
+            </Spin>
+            <ToastContainer
+                position="top-center"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                // pauseOnHover
+                theme="dark"
+            // transition: Bounce
+            />
+        </>
     )
 }
 

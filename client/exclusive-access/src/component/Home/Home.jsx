@@ -11,6 +11,7 @@ function Home() {
     const isSignedIn = localStorage.getItem('userAuth');
     const signedInUser = localStorage.getItem('username') ? decryptData(localStorage.getItem('username')) : undefined;
     const isExclusiveUser = localStorage.getItem('isExclusiveUser') ? decryptData(localStorage.getItem('isExclusiveUser')) : undefined;
+    const firstname = localStorage.getItem('firstname') ? decryptData(localStorage.getItem('firstname')) : undefined;
     const [allPosts, setAllPosts] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -128,11 +129,15 @@ function Home() {
         }
     }
 
+    const getUserGreetStatus = () => {
+        return localStorage.getItem('userGreeted') === 'true';
+    }
+
     useEffect(() => {
         getPostsApi();
 
-        if (isSignedIn && !localStorage.getItem('userNotified')) {
-            toast.success(`Successfully Signed In!`, {
+        if (getUserGreetStatus()) {
+            toast.success(`Hi there, ${firstname}`, {
                 position: "top-center",
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -142,133 +147,123 @@ function Home() {
                 progress: undefined,
                 theme: "dark",
             });
-
-            localStorage.setItem('userNotified', 'userNotified');
+            setTimeout(() => {
+                localStorage.removeItem('userGreeted');
+            }, 3000);
         }
     }, []);
 
     return (
-        <Spin tip="Fetching..." size="large" fullscreen={isLoading} spinning={isLoading}>
-            <div className='container-home'>
-                <h1>Special club for <span>members</span> only</h1>
+        <>
+            <ToastContainer
+                position="top-center"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                // pauseOnHover
+                theme="dark"
+            // transition: Bounce
+            />
+            <Spin tip="Fetching..." size="large" fullscreen={isLoading} spinning={isLoading}>
+                <div className='container-home'>
+                    <h1>Special club for <span>members</span> only</h1>
 
-                <div className='general-info'>
-                    <p>Everybody can see posts and their <span>creators.</span></p>
-                    <p><span>Members</span> can {isSignedIn ? <Link to='/post/add'><span id='btn-addPost'>Add Posts.</span></Link> : 'add posts.'} </p>
-                    <p>Exclusive <span>Members</span> can Edit/Update anyone&apos;s Posts.</p>
-                </div>
+                    <div className='general-info'>
+                        <p>Everybody can see posts and their <span>creators.</span></p>
+                        <p><span>Members</span> can {isSignedIn ? <Link to='/post/add'><span id='btn-addPost'>Add Posts.</span></Link> : 'add posts.'} </p>
+                        <p>Exclusive <span>Members</span> can Edit/Update anyone&apos;s Posts.</p>
+                    </div>
 
-                {isSignedIn ?
-                    <div className='container-posts'>
-                        {allPosts.length ?
-                            allPosts.map((item, index) => <div key={index} className="post-box">
-                                <div className='post-info'>
+                    {isSignedIn ?
+                        <div className='container-posts'>
+                            {allPosts.length ?
+                                allPosts.map((item, index) => <div key={index} className="post-box">
+                                    <div className='post-info'>
+                                        <p>Title : {item.title}</p>
+                                        <p>Description : {item.description}</p>
+                                        <p>Author : {item.author}</p>
+                                        <p>Created At : {moment(item.time_stamp).format('HH:mm, DD/MM/YYYY')}</p>
+                                    </div>
+
+                                    {(isExclusiveUser) ?
+                                        getPostActions(index)
+                                        :
+                                        (signedInUser === item.author) ?
+                                            getPostActions(index) :
+                                            null
+                                    }
+                                </div>)
+                                :
+                                <div>No Data to Show!</div>}
+                        </div>
+                        :
+                        <div className='container-posts'>
+                            {allPosts.length ?
+                                allPosts.map((item, index) => <div key={index} className="post-box-nonSignIn">
                                     <p>Title : {item.title}</p>
                                     <p>Description : {item.description}</p>
                                     <p>Author : {item.author}</p>
                                     <p>Created At : {moment(item.time_stamp).format('HH:mm, DD/MM/YYYY')}</p>
-                                </div>
-
-                                {(isExclusiveUser) ?
-                                    getPostActions(index)
-                                    :
-                                    (signedInUser === item.author) ?
-                                        getPostActions(index) :
-                                        null
-                                }
-                            </div>)
-                            :
-                            <div>No Data to Show!</div>}
-                    </div>
-                    :
-                    <div className='container-posts'>
-                        {allPosts.length ?
-                            allPosts.map((item, index) => <div key={index} className="post-box-nonSignIn">
-                                <p>Title : {item.title}</p>
-                                <p>Description : {item.description}</p>
-                                <p>Author : {item.author}</p>
-                                <p>Created At : {moment(item.time_stamp).format('HH:mm, DD/MM/YYYY')}</p>
-                            </div>)
-                            :
-                            <div>No Data to Show!</div>}
-                    </div>}
-
-                <ToastContainer
-                    position="top-center"
-                    autoClose={3000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    theme="dark"
-                />
-
-                <Modal
-                    title="Edit Post"
-                    centered
-                    open={isModalOpen}
-                    onOk={handleEditSubmit}
-                    onCancel={handleEditClose}
-                    okText={'Submit'}
-                >
-                    <Form
-                        name="basic"
-                        // initialValues={editModalData}
-                        onFinish={onFinish}
-                        // onFinishFailed={onFinishFailed}
-                        autoComplete="off"
-                        form={form}
-                        layout="vertical"
+                                </div>)
+                                :
+                                <div>No Data to Show!</div>}
+                        </div>}
+                    <Modal
+                        title="Edit Post"
+                        centered
+                        open={isModalOpen}
+                        onOk={handleEditSubmit}
+                        onCancel={handleEditClose}
+                        okText={'Submit'}
                     >
+                        <Form
+                            name="basic"
+                            // initialValues={editModalData}
+                            onFinish={onFinish}
+                            // onFinishFailed={onFinishFailed}
+                            autoComplete="off"
+                            form={form}
+                            layout="vertical"
+                        >
 
-                        <div className='group-post-inputs'>
-                            <Form.Item
-                                label="Title"
-                                name="title"
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: 'Please input a valid Title!',
-                                        pattern: /(?!^$)([^\s])/
-                                    },
-                                ]}
-                            >
-                                <Input />
-                            </Form.Item>
+                            <div className='group-post-inputs'>
+                                <Form.Item
+                                    label="Title"
+                                    name="title"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Please input a valid Title!',
+                                            pattern: /(?!^$)([^\s])/
+                                        },
+                                    ]}
+                                >
+                                    <Input />
+                                </Form.Item>
 
-                            <Form.Item
-                                label="Description"
-                                name="description"
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: 'Please input a valid Description!',
-                                        pattern: /(?!^$)([^\s])/
-                                    },
-                                ]}
-                            >
-                                <Input.TextArea classNames='input-passwords' autoSize={true} />
-                            </Form.Item>
-                        </div>
-
-                        {/* <div className='group-btn'>
-                            <Form.Item
-                                wrapperCol={{
-                                    offset: 8,
-                                    span: 16,
-                                }}
-                            >
-                                <Button type="primary" htmlType="submit">
-                                    POST
-                                </Button>
-                            </Form.Item>
-                        </div> */}
-                    </Form>
-                </Modal>
-            </div>
-        </Spin>
+                                <Form.Item
+                                    label="Description"
+                                    name="description"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Please input a valid Description!',
+                                            pattern: /(?!^$)([^\s])/
+                                        },
+                                    ]}
+                                >
+                                    <Input.TextArea classNames='input-passwords' autoSize={true} />
+                                </Form.Item>
+                            </div>
+                        </Form>
+                    </Modal>
+                </div>
+            </Spin>
+        </>
     );
 }
 

@@ -27,6 +27,7 @@ function SignIn() {
             const userRes = await userSignIn.json();
 
             if (userRes.resCode === 'Authenticated') {
+                form.resetFields();
 
                 localStorage.setItem('userAuth', userRes.token);
                 localStorage.setItem('expTime', userRes.expTime);
@@ -34,6 +35,7 @@ function SignIn() {
                 localStorage.setItem('firstname', encryptData(userRes.name));
                 localStorage.setItem('username', encryptData(userRes.username));
                 localStorage.setItem('isExclusiveUser', userRes.isExclusiveUser ? encryptData(userRes.isExclusiveUser) : '');
+                localStorage.setItem('userGreeted', true);
 
                 toast.success(`${userRes.message}`, {
                     position: "top-center",
@@ -61,7 +63,7 @@ function SignIn() {
                 });
             }
             else if (userRes.resCode === 'UserNotFound') {
-                toast.success(`${userRes.message}`, {
+                toast.info(`${userRes.message}`, {
                     position: "top-center",
                     autoClose: 3000,
                     hideProgressBar: false,
@@ -73,6 +75,7 @@ function SignIn() {
                 });
             }
             else {
+                form.resetFields();
                 toast.error(`Unhandled Server Error`, {
                     position: "top-center",
                     autoClose: 3000,
@@ -85,7 +88,6 @@ function SignIn() {
                 });
             }
             setIsLoading(false);
-
         }
         catch (e) {
             setIsLoading(false);
@@ -95,7 +97,6 @@ function SignIn() {
 
     const onFinish = (data) => {
         signInApi(data);
-        form.resetFields();
     }
 
     const onFinishFailed = (data) => {
@@ -103,80 +104,81 @@ function SignIn() {
     }
 
     return (
-        <Spin tip="Fetching..." size="large" fullscreen={isLoading} spinning={isLoading}>
-            <div className='container-signin'>
-                <Form
-                    name="basic"
-                    initialValues={{
-                        remember: true,
-                    }}
-                    onFinish={onFinish}
-                    onFinishFailed={onFinishFailed}
-                    autoComplete="off"
-                    form={form}
-                >
+        <>
+            <Spin tip="Fetching..." size="large" fullscreen={isLoading} spinning={isLoading}>
+                <div className={`container-signin`}>
+                    <Form
+                        name="basic"
+                        initialValues={{
+                            remember: true,
+                        }}
+                        onFinish={onFinish}
+                        onFinishFailed={onFinishFailed}
+                        autoComplete="off"
+                        form={form}
+                    >
 
-                    <h1>Sign In</h1>
+                        <h1>Sign In</h1>
 
-                    <div className='group-signin-inputs'>
-                        <Form.Item
-                            label="Username"
-                            name="username"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'Please input a valid Username!',
-                                    pattern: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
-                                },
-                            ]}
-                        >
-                            <Input />
-                        </Form.Item>
+                        <div className='group-signin-inputs'>
+                            <Form.Item
+                                label="Username"
+                                name="username"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please input a valid Username!',
+                                        pattern: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
+                                    },
+                                ]}
+                            >
+                                <Input />
+                            </Form.Item>
 
-                        <Form.Item
-                            label="Password"
-                            name="password"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'Please input a valid Passcode!',
-                                    pattern: /^[ A-Za-z0-9_@./#&+-]*$/
-                                },
-                            ]}
-                        >
-                            <Input.Password classNames='input-passwords' />
-                        </Form.Item>
-                    </div>
+                            <Form.Item
+                                label="Password"
+                                name="password"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please input a valid Passcode!',
+                                        pattern: /^[ A-Za-z0-9_@./#&+-]*$/
+                                    },
+                                ]}
+                            >
+                                <Input.Password classNames='input-passwords' />
+                            </Form.Item>
+                        </div>
 
-                    <div className='group-btn'>
-                        <Form.Item
-                            wrapperCol={{
-                                offset: 8,
-                                span: 16,
-                            }}
-                        >
-                            <Button type="primary" htmlType="submit">
-                                SIGNIN
-                            </Button>
-                        </Form.Item>
-                    </div>
-                </Form>
-
-                <ToastContainer
-                    position="top-center"
-                    autoClose={3000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    // pauseOnHover
-                    theme="dark"
-                // transition: Bounce
-                />
-            </div>
-        </Spin>
+                        <div className='group-btn'>
+                            <Form.Item
+                                wrapperCol={{
+                                    offset: 8,
+                                    span: 16,
+                                }}
+                            >
+                                <Button type="primary" htmlType="submit">
+                                    SIGNIN
+                                </Button>
+                            </Form.Item>
+                        </div>
+                    </Form>
+                </div>
+            </Spin>
+            <ToastContainer
+                position="top-center"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                // pauseOnHover
+                theme="dark"
+            // transition: Bounce
+            />
+        </>
     )
 }
 
