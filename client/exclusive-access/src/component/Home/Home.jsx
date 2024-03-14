@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { Form, Input, Modal, Popconfirm, Spin } from 'antd';
 import { decryptData } from "../../HelperFunctions/cryptoUtils";
-// import { ReactComponent as EditSvg } from '../../assets/delete.svg';
 
 function Home() {
+    //LocalStorage Params & State Variable Declarations
     const isSignedIn = localStorage.getItem('userAuth');
     const signedInUser = localStorage.getItem('username') ? decryptData(localStorage.getItem('username')) : undefined;
     const isExclusiveUser = localStorage.getItem('isExclusiveUser') ? decryptData(localStorage.getItem('isExclusiveUser')) : undefined;
@@ -18,6 +18,7 @@ function Home() {
     const [editModalData, setEditModalData] = useState({});
     const [form] = Form.useForm();
 
+    //Function to Render Action Btns based on User Information
     const getPostActions = (index) => {
         return (
             <div className='post-actionBtns'>
@@ -41,6 +42,7 @@ function Home() {
         );
     }
 
+    //Function responsible for making GetPost API Request to Get Post Information
     const getPostsApi = async () => {
         try {
             setIsLoading(true);
@@ -62,6 +64,7 @@ function Home() {
         }
     };
 
+    //Modal Component State Handler functions
     const handleEdit = (index) => {
         setEditModalData(allPosts[index]);
         form.setFieldsValue(allPosts[index]);
@@ -84,9 +87,9 @@ function Home() {
             })
     }
 
+    //Function to handle Edit Post API
     const onFinish = async (data) => {
         setIsModalOpen(false);
-        //Call Edit API Here
         try {
             setIsLoading(true);
             const allUpdatedPosts = await fetch('https://project-exclusiveaccess.onrender.com/post/edit', {
@@ -107,9 +110,8 @@ function Home() {
         }
     }
 
+    //Function to handle Delete Post API Request
     const handleDelete = async (index) => {
-        //Call Delete API Here
-
         try {
             setIsLoading(true);
             const allUpdatedPosts = await fetch('https://project-exclusiveaccess.onrender.com/post/delete', {
@@ -129,10 +131,12 @@ function Home() {
         }
     }
 
+    //Function to return User Greet Status.
     const getUserGreetStatus = () => {
         return localStorage.getItem('userGreeted') === 'true';
     }
 
+    //UseEffect Hook to Call GetPost API request, handle User Greet Action
     useEffect(() => {
         getPostsApi();
 
@@ -164,9 +168,7 @@ function Home() {
                 rtl={false}
                 pauseOnFocusLoss
                 draggable
-                // pauseOnHover
                 theme="dark"
-            // transition: Bounce
             />
             <Spin tip="Fetching..." size="large" fullscreen={isLoading} spinning={isLoading}>
                 <div className='container-home'>
@@ -222,9 +224,7 @@ function Home() {
                     >
                         <Form
                             name="basic"
-                            // initialValues={editModalData}
                             onFinish={onFinish}
-                            // onFinishFailed={onFinishFailed}
                             autoComplete="off"
                             form={form}
                             layout="vertical"

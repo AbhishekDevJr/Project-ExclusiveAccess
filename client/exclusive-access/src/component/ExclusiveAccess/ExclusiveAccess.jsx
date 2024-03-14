@@ -1,14 +1,14 @@
-// import React from 'react'
-
 import { Button, Form, Input, Spin } from "antd";
 import './exclusiveaccess.scss';
 import { ToastContainer, toast } from 'react-toastify';
 import { useState } from "react";
 
 function ExclusiveAccess() {
+    //Form instance variable & State
     const [form] = Form.useForm();
     const [isLoading, setIsLoading] = useState(false);
 
+    //Function to hanlde ExclusiveAccess API Request & Handle Response Toasts/Notifications
     const exclusiveAPI = async (reqObj) => {
         try {
             setIsLoading(true);
@@ -67,6 +67,7 @@ function ExclusiveAccess() {
         }
     }
 
+    //Function to calls ExclusiveAccess API post FormValidation success
     const onFinish = (data) => {
         if (data.exclusivePasscode.toLowerCase() === 'rasengan') {
             exclusiveAPI(data);
@@ -85,6 +86,8 @@ function ExclusiveAccess() {
             });
         }
     };
+
+    //Function to handle Form Validation Failure
     const onFinishFailed = (data) => {
         alert(`Please enter valid data for following fields:- ${data.errorFields.map((item) => item.name[0]).join()}`);
     };

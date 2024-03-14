@@ -6,17 +6,17 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
+    //Form Instance/State Variable
     const [form] = Form.useForm();
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
-
+    //Function to handle SignUp API Request & Response Toasts 
     const onFinish = async (values) => {
         if (values.password === values.conPassword) {
-
             form.resetFields();
+
             try {
-                //Call POST API Here
                 setIsLoading(true);
                 const userAdd = await fetch('https://project-exclusiveaccess.onrender.com/users/signup', {
                     method: 'POST',
@@ -85,6 +85,7 @@ const SignUp = () => {
         }
     };
 
+    //Form Validation/Success Failed Function
     const onFinishFailed = (errorInfo) => {
         alert(`Please enter valid data for following fields:- ${errorInfo.errorFields.map((item) => item.name[0]).join()}`);
     };

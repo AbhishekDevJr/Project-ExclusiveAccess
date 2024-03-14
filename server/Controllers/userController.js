@@ -18,6 +18,7 @@ exports.user = asyncHandler((req, res, next) => {
     });
 });
 
+//SignUp Controller Function
 exports.signup = asyncHandler(async (req, res, next) => {
 
     const userExists = await UserModel.findOne({ email: req.body.email });
@@ -43,6 +44,7 @@ exports.signup = asyncHandler(async (req, res, next) => {
     }
 });
 
+//ExclusiveAccess Controller Function
 exports.exclusive = asyncHandler(async (req, res, next) => {
 
     const hasExclusiveAccess = await UserModel.findOne({ email: req.body.username });
@@ -67,6 +69,7 @@ exports.exclusive = asyncHandler(async (req, res, next) => {
     }
 });
 
+//SignIn Controller Function
 exports.signin = asyncHandler(async (req, res, next) => {
 
     const userFind = await UserModel.findOne({ email: req.body.username });

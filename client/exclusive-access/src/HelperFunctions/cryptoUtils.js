@@ -1,5 +1,4 @@
 import CryptoJS from 'crypto-js';
-
 const secretKey = 'mySecretKey';
 
 export const encryptData = (data) => {

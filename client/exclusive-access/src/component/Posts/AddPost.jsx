@@ -9,9 +9,8 @@ function AddPost() {
     const [isLoading, setIsLoading] = useState(false);
 
 
+    //Function to handle AddPost API Request & Handle Response
     const addPostApi = async (reqBody) => {
-        //Handle Add Post API Here
-
         try {
             setIsLoading(true);
             const addpost = await fetch('https://project-exclusiveaccess.onrender.com/post/add', {
@@ -19,7 +18,6 @@ function AddPost() {
                 body: JSON.stringify({ ...reqBody, time_stamp: new Date(), token: userAuthToken }),
                 headers: {
                     'Content-type': 'application/json; charset=UTF-8',
-                    // Authorization: `Bearer ${userAuthToken}`
                 },
             });
 
@@ -71,10 +69,12 @@ function AddPost() {
         }
     };
 
+    //Form Finish/Validation Success Function
     const onFinish = (data) => {
         addPostApi(data);
     }
 
+    //Form FinishFailes/Validation Error Function
     const onFinishFailed = (data) => {
         alert(`Please enter valid data for following fields:- ${data.errorFields.map((item) => item.name[0]).join()}`);
     }

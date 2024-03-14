@@ -4,10 +4,12 @@ import signout from '../../assets/signout.png';
 import { decryptData } from '../../HelperFunctions/cryptoUtils';
 
 function Header() {
+    //Navigator & LocalStorage Variables
     const navigate = useNavigate();
     const isSignedIn = localStorage.getItem('userAuth');
     const firstname = decryptData(localStorage.getItem('firstname'));
 
+    //Function to Clear LocalStorage Parameter upon user SignOut Action
     const handleSignOut = () => {
         localStorage.setItem('userAuth', '');
         localStorage.setItem('expTime', '');

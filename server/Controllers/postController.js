@@ -5,6 +5,7 @@ const userModel = require('../Models/user');
 const jwt = require('jsonwebtoken');
 const { ObjectId } = require('mongodb');
 
+//Add Post Controller Function
 exports.posts = asyncHandler(async (req, res, next) => {
 
     const token = req.body.token;
@@ -41,6 +42,7 @@ exports.posts = asyncHandler(async (req, res, next) => {
     }
 });
 
+//Edit Post Controller Function
 exports.edit = asyncHandler(async (req, res, next) => {
     if (req.body.title && req.body.description && req.body._id) {
         const updatesPost = await postModel.findOneAndUpdate({ _id: new ObjectId(String(req.body._id)) },
@@ -79,6 +81,7 @@ exports.edit = asyncHandler(async (req, res, next) => {
     }
 });
 
+//Delete Post Controller Function
 exports.delete = asyncHandler(async (req, res, next) => {
     if (req.body._id) {
         const deletePost = await postModel.findOneAndDelete({ _id: new ObjectId(String(req.body._id)) });

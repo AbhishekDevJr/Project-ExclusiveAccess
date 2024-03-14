@@ -2,6 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const postModel = require('../Models/post');
 
+//Index Controller Function
 exports.index = asyncHandler((req, res, next) => {
     res.json({
         route: '/',
@@ -11,6 +12,7 @@ exports.index = asyncHandler((req, res, next) => {
     });
 });
 
+//Get Post Controller Function
 exports.getPosts = asyncHandler(async (req, res, next) => {
     const allPosts = await postModel.find();
 

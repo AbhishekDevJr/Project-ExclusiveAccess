@@ -13,6 +13,7 @@ function SignIn() {
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
 
+    //Function to handle SignIn API Request
     const signInApi = async (reqObj) => {
         try {
             setIsLoading(true);
@@ -95,10 +96,12 @@ function SignIn() {
         }
     }
 
+    //Form Finish/Validation Success Function
     const onFinish = (data) => {
         signInApi(data);
     }
 
+    //Form FinishFailed/Validation Error Function
     const onFinishFailed = (data) => {
         alert(`Please enter valid data for following fields:- ${data.errorFields.map((item) => item.name[0]).join()}`);
     }
