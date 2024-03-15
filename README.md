@@ -53,3 +53,8 @@ Note: Render places the Back-End Server into sleep mode after 45 minutes of inac
 <br>
 
 ![image](https://github.com/AbhishekDevJr/Project-ExclusiveAccess/assets/101062487/5856c977-7b40-47df-98c3-d4133b1af508)
+
+<br>
+
+![image](https://github.com/AbhishekDevJr/Project-ExclusiveAccess/assets/101062487/fcb00e8f-b09d-41bc-a0f1-219c788bb41b)
+
