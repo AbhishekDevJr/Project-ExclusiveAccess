@@ -32,7 +32,7 @@ const SignUp = () => {
                     toast.success(`${userAddRes.message}`, {
                         position: "top-center",
                         autoClose: 3000,
-                        hideProgressBar: false,
+                        hideProgressBar: true,
                         closeOnClick: true,
                         pauseOnHover: true,
                         draggable: true,
@@ -45,7 +45,7 @@ const SignUp = () => {
                     toast.success(`${userAddRes.message}`, {
                         position: "top-center",
                         autoClose: 3000,
-                        hideProgressBar: false,
+                        hideProgressBar: true,
                         closeOnClick: true,
                         pauseOnHover: true,
                         draggable: true,
@@ -57,7 +57,7 @@ const SignUp = () => {
                     toast.warn(`Unhandled Server Error.`, {
                         position: "top-center",
                         autoClose: 3000,
-                        hideProgressBar: false,
+                        hideProgressBar: true,
                         closeOnClick: true,
                         pauseOnHover: true,
                         draggable: true,
@@ -75,7 +75,7 @@ const SignUp = () => {
             toast.error('Password & Confirm Password should match', {
                 position: "top-center",
                 autoClose: 3000,
-                hideProgressBar: false,
+                hideProgressBar: true,
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
@@ -209,7 +209,7 @@ const SignUp = () => {
             <ToastContainer
                 position="top-center"
                 autoClose={3000}
-                hideProgressBar={false}
+                hideProgressBar={true}
                 newestOnTop={false}
                 closeOnClick
                 rtl={false}

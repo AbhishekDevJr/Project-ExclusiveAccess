@@ -89,7 +89,7 @@ exports.signin = asyncHandler(async (req, res, next) => {
         else {
             res.json({
                 resCode: 'Authentication Failed',
-                message: `${req.body.username}'s incorrect password.`
+                message: `Password Incorrect for ${req.body.username}`
             });
         }
     }

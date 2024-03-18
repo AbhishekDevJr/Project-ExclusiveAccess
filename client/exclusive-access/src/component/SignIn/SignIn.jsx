@@ -41,7 +41,7 @@ function SignIn() {
                 toast.success(`${userRes.message}`, {
                     position: "top-center",
                     autoClose: 3000,
-                    hideProgressBar: false,
+                    hideProgressBar: true,
                     closeOnClick: true,
                     pauseOnHover: true,
                     draggable: true,
@@ -55,7 +55,7 @@ function SignIn() {
                 toast.error(`${userRes.message}`, {
                     position: "top-center",
                     autoClose: 3000,
-                    hideProgressBar: false,
+                    hideProgressBar: true,
                     closeOnClick: true,
                     pauseOnHover: true,
                     draggable: true,
@@ -67,7 +67,7 @@ function SignIn() {
                 toast.info(`${userRes.message}`, {
                     position: "top-center",
                     autoClose: 3000,
-                    hideProgressBar: false,
+                    hideProgressBar: true,
                     closeOnClick: true,
                     pauseOnHover: true,
                     draggable: true,
@@ -80,7 +80,7 @@ function SignIn() {
                 toast.error(`Unhandled Server Error`, {
                     position: "top-center",
                     autoClose: 3000,
-                    hideProgressBar: false,
+                    hideProgressBar: true,
                     closeOnClick: true,
                     pauseOnHover: true,
                     draggable: true,
@@ -171,7 +171,7 @@ function SignIn() {
             <ToastContainer
                 position="top-center"
                 autoClose={3000}
-                hideProgressBar={false}
+                hideProgressBar={true}
                 newestOnTop={false}
                 closeOnClick
                 rtl={false}

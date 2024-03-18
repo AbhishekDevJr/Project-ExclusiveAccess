@@ -94,7 +94,7 @@ function Home() {
             setIsLoading(true);
             const allUpdatedPosts = await fetch('https://project-exclusiveaccess.onrender.com/post/edit', {
                 method: 'POST',
-                body: JSON.stringify({ ...data, updatedAt: moment(), _id: editModalData._id }),
+                body: JSON.stringify({ ...data, updatedAt: moment(), _id: editModalData._id, updatedBy: signedInUser }),
                 headers: {
                     'Content-type': 'application/json; charset=UTF-8',
                 },
@@ -144,7 +144,7 @@ function Home() {
             toast.success(`Hi there, ${firstname}`, {
                 position: "top-center",
                 autoClose: 3000,
-                hideProgressBar: false,
+                hideProgressBar: true,
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
@@ -162,7 +162,7 @@ function Home() {
             <ToastContainer
                 position="top-center"
                 autoClose={3000}
-                hideProgressBar={false}
+                hideProgressBar={true}
                 newestOnTop={false}
                 closeOnClick
                 rtl={false}
@@ -189,6 +189,11 @@ function Home() {
                                         <p>Description : {item.description}</p>
                                         <p>Author : {item.author}</p>
                                         <p>Created At : {moment(item.time_stamp).format('HH:mm, DD/MM/YYYY')}</p>
+                                        {item?.updatedBy ?
+                                            <p>Updated By : {item?.updatedBy}</p>
+                                            :
+                                            null
+                                        }
                                     </div>
 
                                     {(isExclusiveUser) ?
@@ -210,6 +215,11 @@ function Home() {
                                     <p>Description : {item.description}</p>
                                     <p>Author : {item.author}</p>
                                     <p>Created At : {moment(item.time_stamp).format('HH:mm, DD/MM/YYYY')}</p>
+                                    {item?.updatedBy ?
+                                        <p>Updated By : {item?.updatedBy}</p>
+                                        :
+                                        null
+                                    }
                                 </div>)
                                 :
                                 <div>No Data to Show!</div>}

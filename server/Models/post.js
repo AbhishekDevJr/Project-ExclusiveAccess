@@ -9,6 +9,7 @@ const PostSchema = new Schema({
     createdBy: { type: Schema.Types.ObjectId },
     author: { type: String, required: true },
     updatedAt: { type: String, require: false },
+    updatedBy: { type: String, require: false },
 });
 
 module.exports = mongoose.model('Post', PostSchema);

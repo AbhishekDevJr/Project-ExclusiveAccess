@@ -27,7 +27,7 @@ function ExclusiveAccess() {
                 toast.success(`${resFinal.message}`, {
                     position: "top-center",
                     autoClose: 3000,
-                    hideProgressBar: false,
+                    hideProgressBar: true,
                     closeOnClick: true,
                     pauseOnHover: true,
                     draggable: true,
@@ -39,7 +39,7 @@ function ExclusiveAccess() {
                 toast.success(`${resFinal.message}`, {
                     position: "top-center",
                     autoClose: 3000,
-                    hideProgressBar: false,
+                    hideProgressBar: true,
                     closeOnClick: true,
                     pauseOnHover: true,
                     draggable: true,
@@ -51,7 +51,7 @@ function ExclusiveAccess() {
                 toast.warn(`Unhandled Server Error.`, {
                     position: "top-center",
                     autoClose: 3000,
-                    hideProgressBar: false,
+                    hideProgressBar: true,
                     closeOnClick: true,
                     pauseOnHover: true,
                     draggable: true,
@@ -77,7 +77,7 @@ function ExclusiveAccess() {
             toast.error('Incorrect Passcode', {
                 position: "top-center",
                 autoClose: 1000,
-                hideProgressBar: false,
+                hideProgressBar: true,
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
@@ -158,7 +158,7 @@ function ExclusiveAccess() {
             <ToastContainer
                 position="top-center"
                 autoClose={3000}
-                hideProgressBar={false}
+                hideProgressBar={true}
                 newestOnTop={false}
                 closeOnClick
                 rtl={false}

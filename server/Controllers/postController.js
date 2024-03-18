@@ -44,13 +44,14 @@ exports.posts = asyncHandler(async (req, res, next) => {
 
 //Edit Post Controller Function
 exports.edit = asyncHandler(async (req, res, next) => {
-    if (req.body.title && req.body.description && req.body._id) {
+    if (req.body.title && req.body.description && req.body._id, req.body.updatedBy) {
         const updatesPost = await postModel.findOneAndUpdate({ _id: new ObjectId(String(req.body._id)) },
             {
                 $set: {
                     title: req.body.title,
                     description: req.body.description,
-                    updatedAt: req.body.updatedAt
+                    updatedAt: req.body.updatedAt,
+                    updatedBy: req.body.updatedBy,
                 }
             },
             {
