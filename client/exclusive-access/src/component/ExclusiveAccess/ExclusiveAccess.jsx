@@ -23,7 +23,6 @@ function ExclusiveAccess() {
             const resFinal = await exclusiveRes.json();
 
             if (resFinal.resCode === 'OK') {
-
                 toast.success(`${resFinal.message}`, {
                     position: "top-center",
                     autoClose: 3000,
@@ -34,6 +33,7 @@ function ExclusiveAccess() {
                     progress: undefined,
                     theme: "dark",
                 });
+                form.resetFields();
             }
             else if (resFinal.resCode === 'hasAccess') {
                 toast.success(`${resFinal.message}`, {
@@ -71,7 +71,6 @@ function ExclusiveAccess() {
     const onFinish = (data) => {
         if (data.exclusivePasscode.toLowerCase() === 'rasengan') {
             exclusiveAPI(data);
-            form.resetFields();
         }
         else {
             toast.error('Incorrect Passcode', {

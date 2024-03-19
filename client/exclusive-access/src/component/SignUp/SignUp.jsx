@@ -39,7 +39,9 @@ const SignUp = () => {
                         progress: undefined,
                         theme: "dark",
                     });
-                    navigate('/signin');
+                    setTimeout(() => {
+                        navigate('/signin');
+                    }, 2000);
                 }
                 else if (userAddRes.resCode === 'UserExists') {
                     toast.success(`${userAddRes.message}`, {

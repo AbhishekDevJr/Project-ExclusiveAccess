@@ -2,11 +2,13 @@ import { Button, Form, Input, Spin } from "antd";
 import { ToastContainer, toast } from "react-toastify";
 import './addpost.scss';
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function AddPost() {
     const userAuthToken = localStorage.getItem('userAuth');
     const [form] = Form.useForm();
     const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
 
 
     //Function to handle AddPost API Request & Handle Response
@@ -35,7 +37,9 @@ function AddPost() {
                     theme: "dark",
                 });
                 form.resetFields();
-                window.location.href = '/';
+                setTimeout(() => {
+                    navigate('/');
+                }, 2000);
             }
             else if (addPostRes.resCode === 'badRequest') {
                 toast.success(`${addPostRes.message}`, {
