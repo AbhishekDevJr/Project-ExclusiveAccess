@@ -1,10 +1,10 @@
 <h1>Exclusive Access - Full-Stack(MERN Stack) Project</h1>
 
-<h1><a href = "https://exclusiveaccess.netlify.app/" target "_blank">Live Demo</a></h1>
-
-Note: Render puts the Back-End Server into sleep mode after 45 minutes of inactivity, so it may take 2-3 minutes for the first request to be processed. However, subsequent requests will be executed quickly.
+<h1><a href = "https://exclusiveaccess.netlify.app/">Live Demo</a></h1>
 
 <p>This repository holds the Codebase for Exclusive Access Project. This is a full-stack project built using Technologies/Frameworks primarily revolving around MERN Stack.</p>
+
+Note: Render puts the Back-End Server into sleep mode after 45 minutes of inactivity, so it may take 2-3 minutes for the first request to be processed. However, subsequent requests will be executed quickly.
 
 <h2>List of Technologies, Frameworks & Libraries used.</h2>
 <ul>
@@ -29,8 +29,52 @@ Note: Render puts the Back-End Server into sleep mode after 45 minutes of inacti
         <li><strong>Dependency: </strong>Yarn for managing various project dependencies.</li>
 </ul>
 
-![image](https://github.com/AbhishekDevJr/Project-ExclusiveAccess/assets/101062487/dda19ee1-0ad4-4019-a3ae-c1a7443b960e)
+<h2>List of UI Sections Built & APIs Developed.</h2>
+<ul>
+        <li><strong>Home Section: </strong>
+                <ol>
+                        <li>
+                                GET Post API to fetch all the Existing Posts from the DB.
+                        </li>
+                        <li>
+                                POST (Edit Post) API to Edit the User Selected post using Object_Id to find & update the post in the DB.
+                        </li>
+                        <li>
+                                POST (DELETE Post) API to DELETE the User Selected post using Object_Id to find & Delete the post in the DB.
+                        </li>                        
+                </ol>
+        </li>
+        <li><strong>SignUp Section: </strong>
+                <ol>
+                        <li>
+                                POST SignUp API to handle User Registration and Store the User Info in the DB.
+                        </li>
+                </ol>
+        </li>
+        <li><strong>SignIN Section: </strong>
+                <ol>
+                        <li>
+                                POST SignIn API to handle User Authentication and User SignedIn Session.
+                        </li>
+                </ol>
+        </li>
+        <li><strong>Add Post Section: </strong>
+                <ol>
+                        <li>
+                                POST (Add Post) API to handle Adding Post by the user into the DB.
+                        </li>
+                </ol>
+        </li>
+        <li><strong>Exclusive Access Section: </strong>
+                <ol>
+                        <li>
+                                POST (Exclusive Access) API to handle Permissions to grant the user ExclusiveAccess of the WebApp.
+                        </li>
+                </ol>
+        </li>
+</ul>
 
+![image](https://github.com/AbhishekDevJr/Project-ExclusiveAccess/assets/101062487/dda19ee1-0ad4-4019-a3ae-c1a7443b960e)
 
 <br>
 
@@ -40,11 +84,9 @@ Note: Render puts the Back-End Server into sleep mode after 45 minutes of inacti
 
 ![image](https://github.com/AbhishekDevJr/Project-ExclusiveAccess/assets/101062487/9fc13c12-9aa4-4640-affe-9551cecad5a9)
 
-
 <br>
 
 ![image](https://github.com/AbhishekDevJr/Project-ExclusiveAccess/assets/101062487/74aa3e6b-bc91-40ed-8b53-a9659aa099aa)
-
 
 <br>
 
@@ -57,4 +99,3 @@ Note: Render puts the Back-End Server into sleep mode after 45 minutes of inacti
 <br>
 
 ![image](https://github.com/AbhishekDevJr/Project-ExclusiveAccess/assets/101062487/fcb00e8f-b09d-41bc-a0f1-219c788bb41b)
-
